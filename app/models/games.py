@@ -20,10 +20,7 @@ class Game(db.Model):
     created_at = db.Column(db.DateTime, default=date.today())
     updated_at = db.Column(db.DateTime, default=date.today())
 
-    shop_product = db.relationship("Shop", cascade="all, delete-orphan", back_populates="product_shop")
-    review_product = db.relationship("Review", cascade="all, delete-orphan", back_populates="product_review")
-    cart_product = db.relationship("Shopping_Cart", cascade="all, delete-orphan", back_populates="product_cart")
-    image_product = db.relationship("Product_Image", cascade="all, delete-orphan", back_populates="product_image")
+    review_game = db.relationship("Review", back_populates="game_review")
 
 
 
@@ -31,11 +28,14 @@ class Game(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'owner_id': self.owner_id,
-            'name': self.name,
-            'description': self.description,
+            'game_name': self.game_name,
+            'main_img': self.main_img,
+            'release_date': self.release_date,
+            'developer': self.developer,
+            'publisher': self.publisher,
+            'intro_description': self.intro_description,
+            'full_description': self.full_description,
             'price': self.price,
-            'preview_img': self.preview_img,
             'created_at': self.created_at,
             'update_at': self.updated_at
         }
