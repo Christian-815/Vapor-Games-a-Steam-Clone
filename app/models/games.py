@@ -21,6 +21,10 @@ class Game(db.Model):
     updated_at = db.Column(db.DateTime, default=date.today())
 
     review_game = db.relationship("Review", back_populates="game_review")
+    cart_game = db.relationship("CartGame", back_populates="game_cart")
+    image_game = db.relationship("GameImage", back_populates="game_image")
+    library_game = db.relationship("LibraryGame", back_populates="game_library")
+
 
 
 
