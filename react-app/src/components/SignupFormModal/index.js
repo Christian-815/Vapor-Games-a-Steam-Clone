@@ -8,6 +8,7 @@ function SignupFormModal() {
 	const dispatch = useDispatch();
 	const [email, setEmail] = useState("");
 	const [username, setUsername] = useState("");
+	const [profile_pic, setProfile_pic] = useState('');
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
@@ -15,8 +16,15 @@ function SignupFormModal() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
+		const newUser = new FormData();
+		newUser.append('email', email)
+		newUser.append('username', username)
+		newUser.append('profile_pic', profile_pic)
+		newUser.append('password', password)
+
 		if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, email, password));
+			const data = await dispatch(signUp(newUser));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -54,6 +62,16 @@ function SignupFormModal() {
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						required
+					/>
+				</label>
+				<label>
+					Profile Picture
+					<input
+						type='file'
+						accept=".jpg, .jpeg, .png"
+						onChange={(e) => setProfile_pic(e.target.files[0])}
+						placeholder='Profile Picture'
+						name='profile_pic'
 					/>
 				</label>
 				<label>
