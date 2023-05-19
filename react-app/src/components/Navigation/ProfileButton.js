@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
+import { NavLink } from 'react-router-dom';
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
@@ -39,8 +40,14 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button to='/login' className="login-button" onClick={openMenu()}>
+        {user ? (
+          <>
+            <div>
+              {user.username}
+            </div>
+          </>
+        ) : (null)}
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
