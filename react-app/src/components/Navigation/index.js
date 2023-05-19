@@ -11,7 +11,7 @@ function Navigation({ isLoaded }) {
 		<div className='Nav-bar'>
 			<div className='nav-bar-content'>
 				<div>
-					<NavLink exact to="/" activeClassName='homepage-logo'>
+					<NavLink exact to="/" className='homepage-logo'>
 						<img alt="icon" src="/images/steam-homelogo.png" className='home-logo' />
 						VAPOR GAMES™
 					</NavLink>
