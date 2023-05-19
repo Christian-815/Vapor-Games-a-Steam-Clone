@@ -1,7 +1,87 @@
-.profile-dropdown {
+/* .profile-dropdown {
   position: absolute;
 }
 
 .hidden {
   display: none;
+} */
+
+.Nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: -1em -1em;
+  height: 8.5em;
+  background-color: #171a21;
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  /* padding: 0em 17.3em; */
+}
+
+.nav-bar-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 70.5em;
+  height: 100%;
+}
+
+.homepage-logo {
+  text-decoration: none;
+  color: #b8b6b4;
+  display: flex;
+  align-items: center;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.home-logo {
+  height: 4em;
+  object-fit: contain;
+}
+
+.homepage-user-navoptions {
+  color: #b8b6b4;
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.8em;
+  padding-right: 12em;
+}
+
+.homepage-user-interact {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 0.5em;
+  align-self: flex-start;
+  margin-top: 1em;
+  padding-right: 4em;
+}
+
+.install-steam-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 1em;
+  cursor: not-allowed;
+  background-color: #5c7e10;
+  color: #e5e4dc;
+  border: none;
+  padding: 0.4em 0.7em;
+  font-size: 11px;
+  font-weight: normal;
+}
+
+.login-button {
+  text-decoration: none;
+  color: #b8b6b4;
+  font-size: 12px;
+}
+
+.login-button:hover {
+  text-decoration: none;
+  color: white;
 }
