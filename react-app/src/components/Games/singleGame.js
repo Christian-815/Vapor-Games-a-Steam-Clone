@@ -1,15 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { getAllGames, getOneGame } from "../../store/games";
+import GameReviews from "../Reviews";
 
 const GetOneGame = () => {
     const dispatch = useDispatch();
     const { game_id } = useParams();
+    const [ review, setReview ] = useState('')
+    const [ recommended, setRecommended ] = useState(false)
 
     const game = useSelector(state => state.games.allGames[game_id])
-    console.log(game)
+    // console.log(game)
 
     useEffect(() => {
         dispatch(getOneGame(game_id))
@@ -29,19 +32,7 @@ const GetOneGame = () => {
 
 
             <div>
-
-
-                <div>
-                    <h2>Reviews</h2>
-                </div>
-                <div>
-                    <label>Leave a Review</label>
-                    <textarea
-                        type="textbox"
-                    />
-                </div>
-
-
+                <GameReviews />
             </div>
         </div>
     )
