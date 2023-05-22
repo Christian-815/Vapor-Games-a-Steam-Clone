@@ -8,7 +8,7 @@ const GetAllGames = () => {
     const dispatch = useDispatch();
     const allGames = useSelector(state => state.games.allGames)
     const allGamesArr = Object.values(allGames)
-    console.log(allGamesArr)
+    // console.log(allGamesArr)
 
     useEffect(() => {
         dispatch(getAllGames())
