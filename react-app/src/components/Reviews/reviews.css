@@ -221,3 +221,52 @@
     width: auto;
     cursor: pointer;
 }
+
+.indiv-user-review-page {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    justify-content: center;
+    column-gap: 1em;
+    padding: 2em 2em;
+    width: 57em;
+    margin: auto;
+}
+
+.indiv-user-review-page-left {
+    width: 65%;
+}
+
+.indiv-user-review-page-right {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+}
+
+.indiv-user-review-page-gameimg {
+    width: 100%;
+    border: 1px solid black;
+}
+
+.indiv-user-review-page-owner-controls {
+    border: 2px solid #81a313;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+}
+
+.OWNER-CONTROLS {
+    color: #81a313;
+    font-size: 11px;
+    padding-top: 1.5em;
+    padding-left: 1em;
+}
+
+.indiv-user-review-page-owner-options {
+    padding-bottom: 1em;
+    padding-left: 1.5em;
+    padding-top: 0.5em;
+    border-bottom: 1px solid black;
+}
