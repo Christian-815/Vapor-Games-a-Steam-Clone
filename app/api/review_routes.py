@@ -41,3 +41,18 @@ def create_review_for_game_by_game_id(game_id):
         db.session.commit()
         return new_review.to_dict()
     return form.errors
+
+
+@review_routes.route('/user/<int:user_id>')
+@login_required
+def get_reviews_of_user(user_id):
+    reviews_list = Review.query.filter_by(reviewer_id=user_id).all()
+    reviews = [review.to_dict() for review in reviews_list]
+
+    for review in reviews:
+        game_id = review['game_id']
+        game = Game.query.get(game_id)
+        game_review = game.to_dict()
+        review['game_img'] = game_review['main_img']
+
+    return reviews

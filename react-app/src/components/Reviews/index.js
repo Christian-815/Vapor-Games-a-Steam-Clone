@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { getGameReviews, createGameReview } from "../../store/reviews";
+import { getGameReviews, createGameReview, getUserReviews } from "../../store/reviews";
 import './reviews.css'
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -17,11 +17,11 @@ const GameReviews = () => {
     const singleGame = useSelector(state => state.games.allGames[game_id])
     const newReview = useSelector(state => state.reviews.newReview)
     const user = useSelector(state => state.session.user)
-    const userReview = useSelector(state => state.reviews.userReviews[game_id])
     // console.log(gameReviews)
 
-    useEffect(() => {
-        dispatch(getGameReviews(game_id))
+    useEffect(async () => {
+        await dispatch(getGameReviews(game_id))
+        // await dispatch(getUserReviews(user.id))
     }, [dispatch, newReview])
 
 
@@ -82,7 +82,8 @@ const GameReviews = () => {
     }
 
     const checkReviewsList = () => {
-        return gameReviewsArr.find(review => review.reviewer_id === user.id)
+        const userReview =  gameReviewsArr.find(review => review.reviewer_id === user.id)
+        return userReview
     }
 
     function formatDate(created_at) {
@@ -125,10 +126,11 @@ const GameReviews = () => {
                 </>
             )
         } else if (user && checkReviewsList()) {
+            dispatch(getUserReviews(user.id))
             return (
                 <>
                     <div className="leave-review-div">
-                        <div className="leave-review-header">You reviewed this game on date.</div>
+                        <div className="leave-review-header">You reviewed this game on {formatDate(checkReviewsList().created_at)}.</div>
                         <div className="viewyour-review-div">
                             <NavLink to='/' className="viewyour-review-button">
                                 View your review
@@ -167,20 +169,7 @@ const GameReviews = () => {
         setRecommended(null)
     }
 
-    // const reviewBelongsToUser = (review) => {
-    //     if (review.reviewer_id === user.id) {
-    //         return (
-    //             <>
-    //                 <div>
-
-    //                 </div>
-    //             </>
-    //         )
-    //     }
-    // }
-
-    if (!gameReviews) return null;
-    // if (!userReview) return null;
+    // if (!gameReviews) return null;
 
     return (
         <div>

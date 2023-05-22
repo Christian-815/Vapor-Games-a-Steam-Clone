@@ -8,9 +8,6 @@ import GameReviews from "../Reviews";
 const GetOneGame = () => {
     const dispatch = useDispatch();
     const { game_id } = useParams();
-    const [ review, setReview ] = useState('')
-    const [ recommended, setRecommended ] = useState(false)
-
     const game = useSelector(state => state.games.allGames[game_id])
     // console.log(game)
 

@@ -197,3 +197,27 @@
     margin: 0em auto;
     max-width: 59em;
 }
+
+.indiv-user-review-block {
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
+
+.indiv-user-review-left {
+    width: 30%;
+    /* align-self: center; */
+    display: flex;
+    justify-content: center;
+}
+
+.indiv-user-review-gameimg {
+    object-fit: cover;
+    height: 60%;
+    width: 90%;
+}
+
+.indiv-user-review-right {
+    width: auto;
+    cursor: pointer;
+}

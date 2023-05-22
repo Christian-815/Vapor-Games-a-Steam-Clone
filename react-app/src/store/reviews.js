@@ -1,5 +1,6 @@
 const GET_GAME_REVIEWS = 'reviews/GET_GAME_REVIEWS'
 const CREATE_GAME_REVIEW = 'reviews/CREATE_GAME_REVIEW'
+const GET_USER_REVIEWS = 'reviews/GET_USER_REVIEWS'
 
 
 // ACTION
@@ -12,6 +13,11 @@ export const actionGetGameReviews = (reviews) => ({
 export const actionCreateGameReview = (newReview) => ({
     type: CREATE_GAME_REVIEW,
     newReview
+})
+
+export const actionGetUserReviews = (userReviews) => ({
+    type: GET_USER_REVIEWS,
+    userReviews
 })
 
 
@@ -27,12 +33,20 @@ const normalizingAllReviews = (reviews) => {
     return normalizedReviews;
 };
 
+const normalizingUserReviews = (reviews) => {
+    let normalizedReviews = {};
+    reviews.forEach(review => {
+        normalizedReviews[review.game_id] = review;
+    })
+    return normalizedReviews;
+};
+
 
 // THUNKS
 
 
-export const getGameReviews = (game_id) => async (dispatch) => {
-    const response = await fetch(`/api/reviews/game/${game_id}`)
+export const getGameReviews = (gameId) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/game/${gameId}`)
 
     if (response.ok) {
         const reviews = await response.json()
@@ -44,8 +58,8 @@ export const getGameReviews = (game_id) => async (dispatch) => {
 }
 
 
-export const createGameReview = (game_id, review) => async (dispatch) => {
-    const response = await fetch(`/api/reviews/new/game/${game_id}`, {
+export const createGameReview = (gameId, review) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/new/game/${gameId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(review)
@@ -54,6 +68,19 @@ export const createGameReview = (game_id, review) => async (dispatch) => {
     if (response.ok) {
         const newReview = await response.json()
         dispatch(actionCreateGameReview(newReview))
+    }
+}
+
+
+export const getUserReviews = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/user/${userId}`)
+
+    if (response.ok) {
+        const reviews = await response.json()
+        // console.log('----RESPONSE---', reviews)
+        const normalizedReviews = normalizingUserReviews(reviews)
+        // console.log('-------THUNK REVIEWS-----', normalizedReviews)
+        dispatch(actionGetUserReviews(normalizedReviews))
     }
 }
 
@@ -79,10 +106,11 @@ const reviewsReducer = (state = initialState, action) => {
             return newState
         }
 
-        // case GET_USER_REVIEWS:
-        //     const userReviewState = { ...state }
-        //     userReviewState.userReviews = action.user_reviews
-        //     return userReviewState
+        case GET_USER_REVIEWS: {
+            const newState = { ...state }
+            newState.userReviews = action.userReviews
+            return newState
+        }
 
         // case DELETE_REVIEW:
         //     const deleteState = { ...state }
