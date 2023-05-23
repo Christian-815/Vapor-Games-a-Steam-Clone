@@ -27,6 +27,8 @@ const GetOneGame = () => {
             </div>
 
 
+            <button>Add to cart</button>
+
 
             <div>
                 <GameReviews />
