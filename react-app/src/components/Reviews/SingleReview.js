@@ -18,7 +18,8 @@ const SingleReview = () => {
     const [recommended, setRecommended] = useState();
     const [description, setDescription] = useState();
     const [showEdit, setShowEdit] = useState(false);
-    console.log(review, recommended, description);
+    const [errors, setErrors] = useState('');
+
 
     useEffect(() => {}, [dispatch, userReviews]);
 
@@ -36,6 +37,15 @@ const SingleReview = () => {
 
     const handleSubmitClick = async (e) => {
         e.preventDefault()
+
+        let allErrors = {}
+
+        if (description.length < 3 || description.length > 255) allErrors.description = 'Review must be between 3 and 255 characters'
+        if (recommended !== true && recommended !== false) allErrors.recommended = 'You must recommend the game with either a thumbs up or a thumbs down.'
+
+        if (Object.keys(allErrors).length) {
+            return setErrors(allErrors)
+        }
 
         const payload = {
             recommended,
@@ -121,7 +131,9 @@ const SingleReview = () => {
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
                                 />
+                                {errors.description ? <p className='new-description-errors'>{errors.description}</p> : null}
                                 <div className="leave-review-user-interact-buttons">
+                                    {errors.recommended ? <p className='new-recommended-errors'>{errors.recommended}</p> : null}
                                     {hanleRecommendedButtons()}
                                     <div>
                                         <div>
