@@ -11,6 +11,7 @@ const GameReviews = () => {
     const { game_id } = useParams();
     const [review, setReview] = useState('')
     const [recommended, setRecommended] = useState(null)
+    const [errors, setErrors] = useState('');
 
     const gameReviews = useSelector(state => state.reviews.gameReviews)
     const gameReviewsArr = Object.values(gameReviews)
@@ -104,7 +105,7 @@ const GameReviews = () => {
                         </div>
                         <div className="leave-review-block">
                             <div className="leave-review-block-left">
-                                <img className="leave-review-user-pic" src="https://avatars.cloudflare.steamstatic.com/7bbb0056e9a11c2918151721e3f453edb050d51f_full.jpg" />
+                                <img className="leave-review-user-pic" src={user.profile_pic} />
                             </div>
                             <div className="leave-review-block-right">
                                 <textarea
@@ -114,7 +115,9 @@ const GameReviews = () => {
                                     value={review}
                                     onChange={(e) => setReview(e.target.value)}
                                 />
+                                {errors.review ? <p className='new-review-errors'>{errors.review}</p> : null}
                                 <div className="leave-review-user-interact-buttons">
+                                    {errors.recommended ? <p className='new-recommended-errors'>{errors.recommended}</p> : null}
                                     {hanleRecommendedButtons()}
                                     <div>
                                         <button onClick={handleReviewPost} className="post-review-button">Post review</button>
@@ -158,6 +161,15 @@ const GameReviews = () => {
 
     const handleReviewPost = async (e) => {
         e.preventDefault()
+
+        let allErrors = {}
+
+        if (review.length < 3 || review.length > 255) allErrors.review = 'Review must be between 3 and 255 characters'
+        if (recommended !== true && recommended !== false) allErrors.recommended = 'You must recommend the game with either a thumbs up or a thumbs down.'
+
+        if (Object.keys(allErrors).length) {
+            return setErrors(allErrors)
+        }
 
         const payload = {
             description: review,
