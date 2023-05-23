@@ -56,3 +56,32 @@ def get_reviews_of_user(user_id):
         review['game_img'] = game_review['main_img']
 
     return reviews
+
+
+@review_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_review(id):
+    review = Review.query.get(id)
+    if not review:
+        return ('No Review Found'), 404
+
+    db.session.delete(review)
+    db.session.commit()
+
+    return 'Review Successfully Deleted'
+
+
+@review_routes.route('/userreview/<int:review_id>/update', methods=['PUT'])
+@login_required
+def update_user_review(review_id):
+    review = Review.query.get(review_id)
+    data = request.get_json()
+    print('USER REVIEW--------------', review, '------', data)
+
+    if (review):
+        review.recommended = data["recommended"]
+        review.description = data["description"]
+
+        db.session.commit()
+        return review.to_dict()
+    return {'MESSAGE': "Review not found"}

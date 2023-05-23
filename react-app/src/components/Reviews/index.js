@@ -127,12 +127,13 @@ const GameReviews = () => {
             )
         } else if (user && checkReviewsList()) {
             dispatch(getUserReviews(user.id))
+            const usersReview = checkReviewsList()
             return (
                 <>
                     <div className="leave-review-div">
-                        <div className="leave-review-header">You reviewed this game on {formatDate(checkReviewsList().created_at)}.</div>
+                        <div className="leave-review-header">You reviewed this game on {formatDate(usersReview.created_at)}.</div>
                         <div className="viewyour-review-div">
-                            <NavLink to='/' className="viewyour-review-button">
+                            <NavLink to={`/reviews/userreview/${usersReview.id}`} className="viewyour-review-button">
                                 View your review
                             </NavLink>
                         </div>
@@ -142,7 +143,7 @@ const GameReviews = () => {
                             </div>
                             <div className="viewreview-block-right">
                                 You can edit this review and change your rating if you wish.
-                                <NavLink to='/' className='viewreview-navlink'>
+                                <NavLink to={`/reviews/userreview/${usersReview.id}`} className='viewreview-navlink'>
                                     View your review
                                 </NavLink>
                             </div>

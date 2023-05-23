@@ -1,6 +1,9 @@
 const GET_GAME_REVIEWS = 'reviews/GET_GAME_REVIEWS'
 const CREATE_GAME_REVIEW = 'reviews/CREATE_GAME_REVIEW'
 const GET_USER_REVIEWS = 'reviews/GET_USER_REVIEWS'
+const UPDATE_USER_REVIEW = 'reviews/UPDATE_USER_REVIEWS'
+const DELETE_REVIEW = 'reviews/DELETE_REVIEW'
+
 
 
 // ACTION
@@ -8,16 +11,26 @@ const GET_USER_REVIEWS = 'reviews/GET_USER_REVIEWS'
 export const actionGetGameReviews = (reviews) => ({
     type: GET_GAME_REVIEWS,
     reviews
-})
+});
 
 export const actionCreateGameReview = (newReview) => ({
     type: CREATE_GAME_REVIEW,
     newReview
-})
+});
 
 export const actionGetUserReviews = (userReviews) => ({
     type: GET_USER_REVIEWS,
     userReviews
+});
+
+export const actionUpdateUserReview = (updatedReview) => ({
+    type: UPDATE_USER_REVIEW,
+    updatedReview
+});
+
+export const actionDeleteReview = (reviewId) => ({
+    type: DELETE_REVIEW,
+    reviewId
 })
 
 
@@ -85,6 +98,32 @@ export const getUserReviews = (userId) => async (dispatch) => {
 }
 
 
+export const updateUserReview = (review_id, newReview) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/userreview/${review_id}/update`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newReview)
+    });
+
+    if (response.ok) {
+        const updatedReview = await response.json()
+        dispatch(actionUpdateUserReview(updatedReview))
+    }
+}
+
+
+export const deleteReview = (reviewId, gameId) => async (dispatch) => {
+
+    const response = await fetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE'
+    })
+
+    if (response.ok) {
+        dispatch(actionDeleteReview(gameId))
+    }
+}
+
+
 
 // STATE
 
@@ -112,20 +151,17 @@ const reviewsReducer = (state = initialState, action) => {
             return newState
         }
 
-        // case DELETE_REVIEW:
-        //     const deleteState = { ...state }
-        //     delete deleteState.userReviews[action.reviewId];
-        //     delete deleteState.productReviews[action.reviewId]
-        //     delete deleteState.newReview[action.id];
-        //     return deleteState
+        case UPDATE_USER_REVIEW: {
+            const newState = { ...state }
+            newState.userReviews[action.updatedReview.game_id] = action.updatedReview
+            return newState
+        }
 
-        // case UPDATE_USER_REVIEW:
-        //     const updatedUserReviewState = { ...state }
-        //     console.log('UPDATED REVIEW REDUCER', updatedUserReviewState)
-        //     updatedUserReviewState.productReviews[action.updated_review.id] = action.updated_review
-        //     updatedUserReviewState.userReviews[action.updated_review.id] = action.updated_review
-        //     console.log('UPDATED REVIEW REDUCER', updatedUserReviewState)
-        //     return updatedUserReviewState
+        case DELETE_REVIEW: {
+            const newState = { ...state }
+            delete newState.userReviews[action.reviewId];
+            return newState
+        }
 
         default:
             return state
