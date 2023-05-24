@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { getAllGames, getOneGame } from "../../store/games";
+import AddToUserCart from "../Cart/AddToCart";
 import GameReviews from "../Reviews";
 
 const GetOneGame = () => {
@@ -27,7 +28,7 @@ const GetOneGame = () => {
             </div>
 
 
-            <button>Add to cart</button>
+            <AddToUserCart />
 
 
             <div>
