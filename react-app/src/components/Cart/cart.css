@@ -1,0 +1,85 @@
+.cart-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 0.5em;
+    padding: 1em 1em;
+    margin: 0em auto;
+    max-width: 57em;
+    /* max-height: 4.8em; */
+}
+
+.cart-games {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
+}
+
+.cart-indiv-game-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #16202D;
+    padding: 0em 1em;
+    height: 6.5em;
+}
+
+.cart-indiv-game-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 1.5em;
+    color: #c7d5e0;
+}
+
+.cart-game-img {
+    height: 4em;
+    width: 10em;
+}
+
+.cart-indiv-game-name {
+    font-size: 14px;
+}
+
+.cart-indiv-game-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.4em;
+    color: #c7d5e0;
+}
+
+.cart-remove-game {
+    text-decoration: underline;
+    border: none;
+    background: none;
+    color: #56707f;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.cart-remove-game:hover {
+    color: #67c1f5;
+}
+
+.cart-total {
+    background-color: #16202D;
+    height: 12em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0em 1.5em;
+}
+
+.cart-estimate {
+    display: flex;
+    justify-content: space-between;
+    color: #c7d5e0;
+    font-weight: bold;
+}
+
+.cart-purchase {
+    display: flex;
+    align-self: flex-end;
+}
