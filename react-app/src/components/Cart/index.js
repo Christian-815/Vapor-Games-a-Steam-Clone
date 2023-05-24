@@ -1,5 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
 import './cart.css'
+import { DeleteGameFromCart } from "../../store/carts";
+import OpenModalButton from "../OpenModalButton";
+import PurchaseGamesModal from "./CompletePurchaseModal";
 
 
 
@@ -8,6 +11,10 @@ const ShoppingCart = () => {
 
     const userCart = useSelector(state => state.cart.userCart)
     const userCartArr = Object.values(userCart)
+
+    const handleRemoveClick = (gameInfo) => {
+        dispatch(DeleteGameFromCart(gameInfo))
+    }
 
     return (
         <>
@@ -29,7 +36,7 @@ const ShoppingCart = () => {
                                     <div>
                                         ${game.game_info.price}
                                     </div>
-                                    <button className="cart-remove-game">
+                                    <button className="cart-remove-game" onClick={() => handleRemoveClick(game.game_info)}>
                                         Remove
                                     </button>
                                 </div>
@@ -48,7 +55,12 @@ const ShoppingCart = () => {
                         </div>
                     </div>
                     <div className="cart-purchase">
-                        <button>Purchase for myself</button>
+                        {/* <button className="cart-purchase-button">Purchase for myself</button> */}
+                        <OpenModalButton
+                            buttonText="Purchase for myself"
+                            modalComponent={<PurchaseGamesModal />}
+                            className="cart-purchase-button"
+                        />
                     </div>
                 </div>
             </div>

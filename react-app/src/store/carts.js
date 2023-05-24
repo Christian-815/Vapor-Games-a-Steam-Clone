@@ -68,11 +68,7 @@ export const DeleteGameFromCart = (game) => async (dispatch) => {
 
 export const CheckoutFromCart = (userId) => async (dispatch) => {
     const response = await fetch(`/api/cart/checkoutFromCart`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userId)
+        method: 'DELETE'
     })
 
     if (response.ok) {

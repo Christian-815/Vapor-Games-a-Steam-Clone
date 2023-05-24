@@ -10,7 +10,7 @@ cart_routes = Blueprint('cart', __name__)
 def get_user_cart():
     owner_id = session.get('_user_id')
     user_cart = CartGame.query.filter_by(user_id=owner_id).all()
-    print('user_cart', user_cart[0].to_dict())
+    # print('user_cart', user_cart[0].to_dict())
     cart = [cartGame.to_dict() for cartGame in user_cart]
 
     for item in cart:
@@ -50,7 +50,7 @@ def add_to_cart():
 @login_required
 def delete_game_from_cart():
     data = request.get_json()
-    game_id = data['game_id']
+    game_id = data['id']
     owner_id = session.get('_user_id')
 
     # print("DELETE ITEM FROM CART", owner_id)
@@ -69,12 +69,11 @@ def delete_game_from_cart():
 @cart_routes.route('/checkoutFromCart', methods=['DELETE'])
 @login_required
 def checkout_from_cart():
-    data = request.get_json()
-    cart_owner_id = data
+    cart_owner_id = session.get('_user_id')
 
     all_games_in_user_cart = CartGame.query.filter(CartGame.user_id == cart_owner_id).all()
 
-    print("DELETE ALL games FROM CART------------------------------", type(all_games_in_user_cart))
+    # print("DELETE ALL games FROM CART------------------------------", type(all_games_in_user_cart))
     # print("DELETE ITEM FROM CART", item_in_user_cart)
 
     for game in all_games_in_user_cart:
