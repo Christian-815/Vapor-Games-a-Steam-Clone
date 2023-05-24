@@ -1,3 +1,4 @@
+import { GetUserCart } from "./carts";
 import { getUserReviews } from "./reviews";
 
 // constants
@@ -46,7 +47,8 @@ export const login = (email, password) => async (dispatch) => {
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(setUser(data));
-		dispatch(getUserReviews(data.id))
+		// dispatch(getUserReviews(data.id))
+		// dispatch(GetUserCart())
 		return null;
 	} else if (response.status < 500) {
 		const data = await response.json();

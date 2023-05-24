@@ -7,9 +7,11 @@ import GetAllGames from "./components/Games";
 import GetOneGame from "./components/Games/singleGame";
 import UserReviews from "./components/Reviews/UserReviews";
 import SingleReview from "./components/Reviews/SingleReview";
+import ShoppingCart from "./components/Cart";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import { getUserReviews } from "./store/reviews";
+import { GetUserCart } from "./store/carts";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +24,7 @@ function App() {
 
   if (user) {
     dispatch(getUserReviews(user.id))
+    dispatch(GetUserCart())
   }
 
   return (
@@ -46,6 +49,9 @@ function App() {
           </Route>
           <Route path='/reviews/user'>
             <UserReviews />
+          </Route>
+          <Route path='/cart'>
+            <ShoppingCart />
           </Route>
         </Switch>
       )}

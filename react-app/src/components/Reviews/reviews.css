@@ -52,6 +52,7 @@
     color: #d6d7d8;
     font-family: "Motiva Sans", Sans-serif;
     box-shadow: inset 0px 0px 7px rgba(0, 0, 0, 0.5);
+    resize: none;
 }
 
 .leave-review-user-interact-buttons {
