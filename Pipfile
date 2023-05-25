@@ -26,6 +26,7 @@ python-editor = "==1.0.4"
 greenlet = "==2.0.1"
 Mako = "==1.2.4"
 boto3 = "==1.26.135"
+email-validator = "==2.0.0.post2"
 
 [dev-packages]
 
