@@ -53,6 +53,7 @@ def get_reviews_of_user(user_id):
         game_id = review['game_id']
         game = Game.query.get(game_id)
         game_review = game.to_dict()
+        review['game_name'] = game_review['game_name']
         review['game_img'] = game_review['main_img']
 
     return reviews

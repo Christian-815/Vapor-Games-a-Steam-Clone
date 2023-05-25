@@ -29,7 +29,7 @@
 .nav-bar-grey-seperator {
   display: flex;
   flex-direction: column;
-  row-gap: 0.95em;
+  row-gap: 0.9em;
 }
 
 .nav-bar-seperator {
@@ -46,9 +46,10 @@
   width: 61em;
   justify-content: flex-start;
   align-items: center;
+  column-gap: 1em;
   margin: auto;
-  background-image: url(https://community.cloudflare.steamstatic.com/public/images/profile/profile_header_small_bg_texture.jpg);
-  background: rgba(58, 62, 71, 0.5);
+  background: #2F343F;
+  color: #ebebeb;
   padding: 1em 1em;
 }
 

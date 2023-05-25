@@ -11,13 +11,42 @@ function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
 	const userCart = useSelector(state => state.cart.userCart);
 	const userCartArr = Object.values(userCart)
-	// console.log(userCartArr.length)
+	const userReviews = useSelector(state => state.reviews.userReviews);
+	const userReviewsArr = Object.values(userReviews)
+	console.log(locationArr)
 
 	const countUserCart = () => {
-		if (userCartArr.length) {
-			return userCartArr.length
-		} else {
+		if (!userCartArr.length || !sessionUser) {
 			return 0
+		} else {
+			return userCartArr.length
+		}
+	}
+
+	const findReviewGameName = (reviewId) => {
+		const review = userReviewsArr.find((review) => review.id == reviewId)
+		return review.game_name
+	}
+
+	const renderUserLocation = () => {
+		if (locationArr[3]) {
+			return (
+				<>
+					<div>
+						» Reviews » {findReviewGameName(parseInt(locationArr[3]))}
+					</div>
+				</>
+			)
+		}
+
+		if (locationArr[2] === 'user') {
+			return (
+				<>
+					<div>
+						» Games » Reviews
+					</div>
+				</>
+			)
 		}
 	}
 
@@ -133,10 +162,21 @@ function Navigation({ isLoaded }) {
 							</div>
 						</div>
 
-						<div className='nav-bar-grey'>
-							<h1>
-								{sessionUser.username}
-							</h1>
+						<div>
+							{sessionUser ? (
+								<div className='nav-bar-grey'>
+									<div>
+										<img style={{ width: '4em', height: '4em' }} src={sessionUser.profile_pic} />
+									</div>
+									<div style={{ fontSize: '26px' }}>
+										{sessionUser.username}
+									</div>
+									<div style={{ fontSize: '12px' }}>
+										{renderUserLocation()}
+									</div>
+
+								</div>
+							) : null}
 						</div>
 					</div>
 				</>

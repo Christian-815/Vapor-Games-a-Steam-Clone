@@ -22,13 +22,18 @@ const GetOneGame = () => {
 
     return (
         <div>
-            <h1>one game</h1>
-            <div>
-                {game.game_name}
+            <div className="home-games-list">
+                <h1>one game</h1>
+                <div>
+                    <img src={game.main_img} />
+                </div>
+                <div>
+                    {game.game_name}
+                    <AddToUserCart />
+                </div>
             </div>
 
 
-            <AddToUserCart />
 
 
             <div>
