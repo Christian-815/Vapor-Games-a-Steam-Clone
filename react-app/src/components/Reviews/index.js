@@ -198,12 +198,12 @@ const GameReviews = () => {
                     </div>
                     {gameReviewsArr.map((review) => {
                         return (
-                            <div key={review.id}>
+                            <div key={review.id} style={{ color: 'white' }}>
                                 <div>
-                                    <img src={review.reviewer_profile_pic} alt="user picture" />
+                                    <img src={review.reviewer_profile_pic} alt="user picture" className="leave-review-user-pic" />
                                     {review.reviewer_username}
                                 </div>
-                                <div>
+                                <div >
                                     {review.description}
                                     {/* {review.created_at} */}
                                 </div>

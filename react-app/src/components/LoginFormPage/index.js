@@ -3,6 +3,7 @@ import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import './LoginForm.css';
+import { NavLink } from "react-router-dom";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -20,6 +21,18 @@ function LoginFormPage() {
       setErrors(data);
     }
   };
+
+  const demoUser = () => {
+    setEmail("demo1@aa.io");
+    setPassword("password");
+    dispatch(login("demo@aa.io", "password"))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          setErrors(["The provided credentials were invalid."]);
+        }
+      });
+  }
 
   return (
     <>
@@ -49,6 +62,13 @@ function LoginFormPage() {
           />
         </label>
         <button type="submit">Log In</button>
+        <div className='or-text'>or</div>
+        <button className="demo-user-button" onClick={demoUser}>Log in as Demo User</button>
+        <div>
+          <NavLink to='/signup' className="login-button">
+            Join Steam
+          </NavLink>
+        </div>
       </form>
     </>
   );

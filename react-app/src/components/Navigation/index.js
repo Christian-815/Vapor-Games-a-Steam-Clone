@@ -1,59 +1,193 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
+	const location = useLocation()
+	const history = useHistory()
+	const locationArr = location.pathname.split('/')
 	const sessionUser = useSelector(state => state.session.user);
-	// const location = useLocation()
-	// console.log(location)
+	const userCart = useSelector(state => state.cart.userCart);
+	const userCartArr = Object.values(userCart)
+	const userReviews = useSelector(state => state.reviews.userReviews);
+	const userReviewsArr = Object.values(userReviews)
+	console.log(locationArr)
+
+	const countUserCart = () => {
+		if (!userCartArr.length || !sessionUser) {
+			return 0
+		} else {
+			return userCartArr.length
+		}
+	}
+
+	const findReviewGameName = (reviewId) => {
+		const review = userReviewsArr.find((review) => review.id == reviewId)
+		return review.game_name
+	}
+
+	const renderUserLocation = () => {
+		if (locationArr[3]) {
+			return (
+				<>
+					<div>
+						» Reviews » {findReviewGameName(parseInt(locationArr[3]))}
+					</div>
+				</>
+			)
+		}
+
+		if (locationArr[2] === 'user') {
+			return (
+				<>
+					<div>
+						» Games » Reviews
+					</div>
+				</>
+			)
+		}
+	}
+
+
+	const renderNavBar = () => {
+		if (locationArr[1] === '' || locationArr[1] === 'cart' || locationArr[1] === 'games') {
+			return (
+				<>
+					<div className='nav-bar-green'>
+						<div className='Nav-bar'>
+							<div className='nav-bar-content'>
+								<div>
+									<NavLink exact to="/" className='homepage-logo'>
+										<img alt="icon" src="/images/steam-homelogo.png" className='home-logo' />
+										VAPOR GAMES™
+									</NavLink>
+								</div>
+								<div className='homepage-user-navoptions'>
+									<div onClick={() => history.push('/')} style={{ cursor: "pointer" }}>STORE</div>
+									<div>COMMUNITY</div>
+									<div>ABOUT</div>
+									<div>SUPPORT</div>
+								</div>
+								<div className='homepage-user-interact'>
+									<button className='install-steam-button'>
+										<div>
+											<img alt="icon" src="/images/install-steam-button.png" className='install-logo' />
+										</div>
+										<div>
+											InstallSteam
+										</div>
+									</button>
+									{sessionUser ? (
+										<div className='navbar-user-loggedin'>
+											<div>
+												<ProfileButton user={sessionUser} />
+											</div>
+											<div>
+												<img className='navbar-user-pic' src={sessionUser.profile_pic} />
+											</div>
+										</div>
+									) : (
+										<NavLink to='/login' className="login-button">
+											login
+										</NavLink>
+									)}
+								</div>
+							</div>
+						</div>
+
+						<div className='nav-bar-seperator'>
+							<div className='nav-cart-button-div'>
+								<button className='nav-cart-button' onClick={() => history.push('/cart')}>CART ({countUserCart()})</button>
+							</div>
+							<div className='nav-green-bar'>
+								<div className='nav-bar-green-options'>
+									<button className='nav-bar-green-options-buttons'>Your Store</button>
+									<button className='nav-bar-green-options-buttons'>News & Noteworthy</button>
+									<button className='nav-bar-green-options-buttons'>Categories</button>
+									<button className='nav-bar-green-options-buttons'>Points Shop</button>
+									<button className='nav-bar-green-options-buttons'>News</button>
+								</div>
+								<div>
+									<div>Search Bar</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</>
+			)
+		} else {
+			return (
+				<>
+					<div className='nav-bar-grey-seperator'>
+						<div className='Nav-bar'>
+							<div className='nav-bar-content'>
+								<div>
+									<NavLink exact to="/" className='homepage-logo'>
+										<img alt="icon" src="/images/steam-homelogo.png" className='home-logo' />
+										VAPOR GAMES™
+									</NavLink>
+								</div>
+								<div className='homepage-user-navoptions'>
+									<div onClick={() => history.push('/')} style={{ cursor: "pointer" }}>STORE</div>
+									<div>COMMUNITY</div>
+									<div>ABOUT</div>
+									<div>SUPPORT</div>
+								</div>
+								<div className='homepage-user-interact'>
+									<button className='install-steam-button'>
+										<div>
+											<img alt="icon" src="/images/install-steam-button.png" className='install-logo' />
+										</div>
+										<div>
+											InstallSteam
+										</div>
+									</button>
+									{sessionUser ? (
+										<div className='navbar-user-loggedin'>
+											<div>
+												<ProfileButton user={sessionUser} />
+											</div>
+											<div>
+												<img className='navbar-user-pic' src={sessionUser.profile_pic} />
+											</div>
+										</div>
+									) : (
+										<NavLink to='/login' className="login-button">
+											login
+										</NavLink>
+									)}
+								</div>
+							</div>
+						</div>
+
+						<div>
+							{sessionUser ? (
+								<div className='nav-bar-grey'>
+									<div>
+										<img style={{ width: '4em', height: '4em' }} src={sessionUser.profile_pic} />
+									</div>
+									<div style={{ fontSize: '26px' }}>
+										{sessionUser.username}
+									</div>
+									<div style={{ fontSize: '12px' }}>
+										{renderUserLocation()}
+									</div>
+
+								</div>
+							) : null}
+						</div>
+					</div>
+				</>
+			)
+		}
+	}
 
 	return (
-		<div className='Nav-bar'>
-			<div className='nav-bar-content'>
-				<div>
-					<NavLink exact to="/" className='homepage-logo'>
-						<img alt="icon" src="/images/steam-homelogo.png" className='home-logo' />
-						VAPOR GAMES™
-					</NavLink>
-				</div>
-				<div className='homepage-user-navoptions'>
-					<div>STORE</div>
-					<div>COMMUNITY</div>
-					<div>ABOUT</div>
-					<div>SUPPORT</div>
-				</div>
-				<div className='homepage-user-interact'>
-					<button className='install-steam-button'>
-						<div>
-							<img alt="icon" src="/images/install-steam-button.png" className='install-logo' />
-						</div>
-						<div>
-							Install Steam
-						</div>
-					</button>
-					{sessionUser ? (
-						<div>
-							<ProfileButton user={sessionUser} />
-						</div>
-					) : (
-						<NavLink to='/login' className="login-button">
-							login
-						</NavLink>
-					)}
-				</div>
-			</div>
-			{/* {sessionUser ? (
-				<div>
-					<ProfileButton user={sessionUser} />
-				</div>
-			) : (
-				<NavLink to='/login' className="login-button">
-					login
-				</NavLink>
-			)} */}
-		</div>
+		<>
+			{renderNavBar()}
+		</>
 	);
 }
 

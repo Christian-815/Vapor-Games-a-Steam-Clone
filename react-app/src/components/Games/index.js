@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import React from "react";
 import { getAllGames } from "../../store/games";
 import { NavLink } from "react-router-dom";
+import './games.css'
 
 const GetAllGames = () => {
     const dispatch = useDispatch();
@@ -20,15 +21,20 @@ const GetAllGames = () => {
     return (
         <>
             <h1>Games</h1>
-            {allGamesArr.map((game) => {
-                return (
-                    <div key={game.id}>
-                        <NavLink to={`/games/${game.id}`}>
-                            {game.game_name}
-                        </NavLink>
-                    </div>
-                )
-            })}
+            <div className="home-games-list">
+                {allGamesArr.map((game) => {
+                    return (
+                        <div key={game.id}>
+                            <div>
+                            </div>
+                            <NavLink to={`/games/${game.id}`}>
+                                <img src={game.main_img} />
+                                {game.game_name}
+                            </NavLink>
+                        </div>
+                    )
+                })}
+            </div>
         </>
     )
 }

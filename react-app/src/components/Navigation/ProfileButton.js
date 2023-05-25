@@ -14,9 +14,13 @@ function ProfileButton({ user }) {
   const history = useHistory()
 
   const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+    if (showMenu) {
+      return setShowMenu(false)
+    } else {
+      return setShowMenu(true);
+    }
   };
+  // const closeMenu = () => setShowMenu(false);
 
   useEffect(() => {
     if (!showMenu) return;
@@ -32,51 +36,37 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const handleLogout = (e) => {
+  const handleLogout = async (e) => {
     e.preventDefault();
-    dispatch(logout());
-    history.push('/')
+    await dispatch(logout());
+    history.push('/');
+    return window.location.reload()
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
+  // console.log(showMenu)
 
   return (
     <>
-      <button to='/login' className="login-button" onClick={openMenu()}>
-        {user ? (
-          <>
+      <button className="login-button" onClick={openMenu}>
+        <>
+          <div className="navbar-user-username-dropdown">
             <div>
               {user.username}
             </div>
-          </>
-        ) : (null)}
+            <div>
+              <img src='https://store.cloudflare.steamstatic.com/public/shared/images/popups/btn_arrow_down_padded.png' />
+            </div>
+          </div>
+        </>
       </button>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
-          </>
-        ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
-        )}
-      </ul>
+      <div className={ulClassName} ref={ulRef}>
+        <div>{user.username}</div>
+        <div>{user.email}</div>
+        <div>
+          <button onClick={handleLogout}>Log Out</button>
+        </div>
+      </div>
     </>
   );
 }
