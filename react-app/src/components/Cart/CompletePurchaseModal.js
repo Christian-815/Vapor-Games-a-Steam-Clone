@@ -5,7 +5,7 @@ import './cart.css'
 import { CheckoutFromCart } from '../../store/carts';
 
 
-const PurchaseGamesModal = () => {
+const PurchaseGamesModal = ({ total }) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const history = useHistory()
@@ -22,10 +22,10 @@ const PurchaseGamesModal = () => {
     return (
         <div className='delete-review-container'>
             <h1 className='delete-review-title'>Complete Purchase?</h1>
-            <p className='delete-review-text'>Purchase Total:</p>
+            <p className='delete-review-text'>Purchase Total: ${total}</p>
             <div className='delete-review-submit'>
-                <button id='yes-delete' onClick={handleSubmit}>PURCHASE</button>
-                <button id='no-keep' onClick={closeModal}>Cancel</button>
+                <button className='delete-review-yes' onClick={handleSubmit}>PURCHASE</button>
+                <button className='delete-review-no' onClick={closeModal}>Cancel</button>
             </div>
         </div>
     )

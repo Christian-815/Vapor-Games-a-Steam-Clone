@@ -17,12 +17,14 @@ const DeleteReview = ({ reviewId, gameId }) => {
     };
 
     return (
-        <div className='delete-review-container'>
-            <h1 className='delete-review-title'>Delete Review?</h1>
-            <p className='delete-review-text'>Are you sure you want to remove this Review? This cannot be undone.</p>
-            <div className='delete-review-submit'>
-                <button id='yes-delete' onClick={handleSubmit}>OK</button>
-                <button id='no-keep' onClick={closeModal}>Cancel</button>
+        <div className='delete-review-border'>
+            <div className='delete-review-container'>
+                <div className='delete-review-title'>Delete Review?</div>
+                <p className='delete-review-text'>Are you sure you want to delete this Review? This cannot be undone.</p>
+                <div className='delete-review-submit'>
+                    <button className='delete-review-yes' onClick={handleSubmit}>OK</button>
+                    <button className='delete-review-no' onClick={closeModal}>Cancel</button>
+                </div>
             </div>
         </div>
     )

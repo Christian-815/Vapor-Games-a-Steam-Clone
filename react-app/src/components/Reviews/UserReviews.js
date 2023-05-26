@@ -16,6 +16,14 @@ const UserReviews = () => {
         history.push(`/reviews/userreview/${review.id}`)
     }
 
+    useEffect(() => {
+        if (!user) {
+            history.push('/');
+        }
+    }, [user]);
+
+    if (!user) return null;
+
     return (
         <>
             <div>

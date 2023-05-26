@@ -1,42 +1,74 @@
+.delete-review-border {
+    height: 200px;
+    width: 500px;
+    background: rgb(2, 202, 255);
+    background: linear-gradient(90deg, rgba(2, 202, 255, 1) 0%, rgba(49, 106, 255, 1) 71%);
+    padding-top: 1px;
+}
+
 .delete-review-container {
-    height: 175px;
-    width: 400px
+    height: 200px;
+    width: 500px;
+    background: rgb(51, 55, 63);
+    background: linear-gradient(160deg, rgba(51, 55, 63, 1) 0%, rgba(37, 40, 46, 1) 75%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .delete-review-title {
-    text-align: center;
+    font-size: 20px;
+    padding-left: 2em;
+    padding-top: 1em;
+    font-weight: bold;
+    color: white;
 }
 
 .delete-review-text {
-    text-align: center;
+    font-size: 12px;
+    padding-left: 3.5em;
+    padding-top: 1em;
+    font-weight: bold;
+    color: #acb2b8;
 }
 
 .delete-review-submit {
     display: flex;
-    justify-content: center;
-    margin-top: 30px;
+    flex-direction: row;
+    align-self: flex-end;
+    column-gap: 0.7em;
+    padding-right: 3.5em;
+    padding-top: 1em;
 }
 
-#yes-delete {
-    width: 175px;
+.delete-review-yes {
     text-align: center;
-    background-color: #54a7fa;
+    background: #6fa720;
+    background: linear-gradient(to right, #75b022 5%, #588a1b 95%);
+    border-radius: 2px;
+    border: none;
+    padding: 0.4em 1.2em;
+    color: #d2efa9;
+    cursor: pointer;
+}
+
+.delete-review-yes:hover {
+    background: #84C843;
     color: white;
-    font-weight: bold;
 }
 
-#yes-delete:hover {
-    background-color: #2c8ae8;
-}
-
-#no-keep {
-    background-color: #54a7fa;
-    margin-left: 10px;
-    width: 175px;
+.delete-review-no {
+    text-align: center;
+    background: linear-gradient(to right, #32363f 5%, #32363f 95%);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    border: none;
+    padding: 0.4em 1.2em;
     color: white;
-    font-weight: bold;
+    cursor: pointer;
 }
 
-#no-keep:hover {
-    background-color: #2c8ae8;
+.delete-review-no:hover {
+    background: #464D58;
 }

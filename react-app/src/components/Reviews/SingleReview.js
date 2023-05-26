@@ -22,7 +22,12 @@ const SingleReview = () => {
     const [errors, setErrors] = useState('');
 
 
-    useEffect(() => { }, [dispatch, userReviews]);
+    useEffect(() => {}, [dispatch, userReviews]);
+    useEffect(() => {
+        if (!user) {
+            history.push('/');
+        }
+    }, [user]);
 
     if (!userReviewsArr.length) return null;
 

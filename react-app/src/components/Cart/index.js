@@ -25,7 +25,7 @@ const ShoppingCart = () => {
             total += cartItem.game_info.price
         })
 
-        return total
+        return total.toFixed(2)
     }
 
 
@@ -70,7 +70,7 @@ const ShoppingCart = () => {
                             <div className="cart-purchase">
                                 <OpenModalButton
                                     buttonText="Purchase for myself"
-                                    modalComponent={<PurchaseGamesModal />}
+                                    modalComponent={<PurchaseGamesModal total={calculateTotal()}/>}
                                     className="cart-purchase-button"
                                 />
                             </div>
