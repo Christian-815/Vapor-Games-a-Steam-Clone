@@ -13,6 +13,7 @@ function Navigation({ isLoaded }) {
 	const userCartArr = Object.values(userCart)
 	const userReviews = useSelector(state => state.reviews.userReviews);
 	const userReviewsArr = Object.values(userReviews)
+
 	console.log(locationArr)
 
 	const countUserCart = () => {
@@ -24,8 +25,10 @@ function Navigation({ isLoaded }) {
 	}
 
 	const findReviewGameName = (reviewId) => {
-		const review = userReviewsArr.find((review) => review.id == reviewId)
-		return review.game_name
+		if (userReviewsArr.length) {
+			const review = userReviewsArr.find((review) => review.id === reviewId)
+			return review.game_name
+		}
 	}
 
 	const renderUserLocation = () => {
@@ -33,7 +36,7 @@ function Navigation({ isLoaded }) {
 			return (
 				<>
 					<div>
-						» Reviews » {findReviewGameName(parseInt(locationArr[3]))}
+						» <NavLink style={{ textDecoration: 'none', cursor: 'pointer', color: 'white'}} to='/reviews/user'>Reviews</NavLink> » {findReviewGameName(parseInt(locationArr[3]))}
 					</div>
 				</>
 			)

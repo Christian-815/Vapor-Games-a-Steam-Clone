@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useParams } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton';
 import { getUserReviews, updateUserReview } from '../../store/reviews';
 import DeleteReview from '../../DeleteReviewModal';
@@ -8,6 +8,7 @@ import DeleteReview from '../../DeleteReviewModal';
 
 const SingleReview = () => {
     const dispatch = useDispatch();
+    const history = useHistory()
     const { review_id } = useParams();
 
     const userReviews = useSelector(state => state.reviews.userReviews);
@@ -21,7 +22,7 @@ const SingleReview = () => {
     const [errors, setErrors] = useState('');
 
 
-    useEffect(() => {}, [dispatch, userReviews]);
+    useEffect(() => { }, [dispatch, userReviews]);
 
     if (!userReviewsArr.length) return null;
 
@@ -117,7 +118,30 @@ const SingleReview = () => {
         }
     }
 
-    const renderReviewBlock  = () => {
+    const checkRecommeneded = (recommended) => {
+        console.log('in here')
+        if (recommended) {
+            return (
+                <>
+                    <span><i class="thumb_icons thumb_up"></i></span>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <span><i class="thumb_icons thumb_down"></i></span>
+                </>
+            )
+        }
+    }
+
+    function formatDate(created_at) {
+        const dateObj = new Date(created_at);
+        const options = { month: "long", day: "numeric", year: "numeric" };
+        return dateObj.toLocaleDateString("en-US", options);
+    }
+
+    const renderReviewBlock = () => {
         if (showEdit) {
             return (
                 <>
@@ -131,16 +155,16 @@ const SingleReview = () => {
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
                                 />
-                                {errors.description ? <p className='new-description-errors'>{errors.description}</p> : null}
+                                {errors.description ? <p className='reviews-errors'>{errors.description}</p> : null}
                                 <div className="leave-review-user-interact-buttons">
-                                    {errors.recommended ? <p className='new-recommended-errors'>{errors.recommended}</p> : null}
+                                    {errors.recommended ? <p className='reviews-errors'>{errors.recommended}</p> : null}
                                     {hanleRecommendedButtons()}
-                                    <div>
+                                    <div style={{ display: 'flex', alignItems: 'center', columnGap: '0.2em', paddingTop: '1em' }}>
                                         <div>
-                                            <button onClick={handleCancelClick}>Cancel</button>
+                                            <button className="update-review-button" onClick={handleCancelClick}>Cancel</button>
                                         </div>
                                         <div>
-                                            <button className="post-review-button" onClick={handleSubmitClick}>Save Changes</button>
+                                            <button className="update-review-button" onClick={handleSubmitClick}>Save Changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -152,13 +176,35 @@ const SingleReview = () => {
         } else {
             return (
                 <>
-                    <div className='indiv-user-review-page-left'>
-                        <div>{review.recommended}</div>
-                        <div>
-                            <div>{review.created_at}</div>
-                            <div>{review.update_at}</div>
+                    <div className='indiv-user-review-page-left-review'>
+                        <div className='user-review-details'>
+                            <div className='user-review-details-seperator'>
+                                Review
+                            </div>
+                            <div className='user-review-details-recommended'>
+                                <div style={{ display: 'flex', columnGap: '1em' }}>
+                                    <div>
+                                        {checkRecommeneded(review.recommended)}
+                                    </div>
+                                    <div>
+                                        {review.recommended ?
+                                            <>
+                                                Recommended
+                                            </> :
+                                            <>
+                                                Not Recommened
+                                            </>}
+                                    </div>
+                                </div>
+                                <div className='user-review-details-icon'>
+                                    <img src='https://community.cloudflare.steamstatic.com/public/shared/images/userreviews/icon_review_steam.png' />
+                                </div>
+                            </div>
+                            <div style={{ color: '#a0a08b', fontSize: '11px'}}>
+                                <div>Posted: {formatDate(review.created_at)}</div>
+                            </div>
+                            <div style={{ color: '#acb2b8', fontSize: '17px' }}>{review.description}</div>
                         </div>
-                        <div>{review.description}</div>
                     </div>
                 </>
             )
@@ -172,19 +218,20 @@ const SingleReview = () => {
                 {renderReviewBlock()}
 
                 <div className='indiv-user-review-page-right'>
-                    <div>
-                        <img src={review.game_img} className='indiv-user-review-page-gameimg'></img>
+                    <div style={{ cursor: 'pointer'}}>
+                        <img onClick={() => history.push(`/games/${review.game_id}`)} src={review.game_img} className='indiv-user-review-page-gameimg'></img>
                     </div>
                     <div className='indiv-user-review-page-owner-controls'>
                         <div className='OWNER-CONTROLS'>OWNER CONTROLS</div>
                         <div className='indiv-user-review-page-owner-options' onClick={handleEditClick}>
                             <img src='https://community.cloudflare.steamstatic.com/public/images//sharedfiles/icons/icon_edit.png' /> Edit Review
                         </div>
-                        <div className='indiv-user-review-page-owner-options'>
+                        <div className='indiv-user-review-page-owner-options' style= {{ display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                             <img src='https://community.cloudflare.steamstatic.com/public/images//sharedfiles/icons/icon_delete.png' />
                             <OpenModalButton
                                 buttonText="Delete"
                                 modalComponent={<DeleteReview reviewId={review.id} gameId={review.game_id} />}
+                                className='delete-review-button'
                             />
                         </div>
                     </div>
