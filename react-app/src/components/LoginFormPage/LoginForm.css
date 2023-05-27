@@ -43,6 +43,10 @@
     cursor: pointer;
 }
 
+.login-page-button:hover {
+    background: linear-gradient(90deg, #47BFFF 0%, #3387E3 100%);
+}
+
 .login-page-footer {
     background-color: #181A21;
     width: 100vw;

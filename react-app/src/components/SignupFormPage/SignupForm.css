@@ -1,0 +1,44 @@
+.signup-page-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    /* padding-left: 28vw; */
+    background: linear-gradient(125deg, transparent 0%, #212429 45%),
+        url(https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg);
+    /* background-blend-mode: screen; */
+    width: 100vw;
+    height: 100vh;
+}
+
+
+.signup-form-header {
+    font-weight: lighter;
+    color: white;
+    font-size: 32px;
+}
+
+.signup-page-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 0.7em;
+    width: 30em;
+    height: 20em;
+    padding-right: 30em;
+}
+
+.signup-page-button {
+    margin-top: 1em;
+    padding: 1em 0em;
+    width: 13em;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    background: linear-gradient(90deg, #06BFFF 0%, #2D73FF 100%);
+    cursor: pointer;
+}
+
+.signup-page-button:hover {
+    background: linear-gradient(90deg, #47BFFF 0%, #3387E3 100%);
+}
