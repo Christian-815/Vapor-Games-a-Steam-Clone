@@ -49,6 +49,7 @@
   column-gap: 1em;
   margin: auto;
   background: #2F343F;
+  box-shadow: 2px 2px 10px black;
   color: #ebebeb;
   padding: 1em 1em;
 }

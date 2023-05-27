@@ -19,6 +19,10 @@ function SignupFormModal() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
+		if (!profile_pic) {
+			return setErrors(['Must upload a profile picture'])
+		}
+
 		const newUser = new FormData();
 		newUser.append('email', email)
 		newUser.append('username', username)
@@ -40,63 +44,71 @@ function SignupFormModal() {
 	};
 
 	return (
-		<>
-			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
-				<ul>
-					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
-					))}
-				</ul>
-				<label>
-					Email
-					<input
-						type="text"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Username
-					<input
-						type="text"
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Profile Picture
-					<input
-						type='file'
-						accept=".jpg, .jpeg, .png"
-						onChange={(e) => setProfile_pic(e.target.files[0])}
-						placeholder='Profile Picture'
-						name='profile_pic'
-					/>
-				</label>
-				<label>
-					Password
-					<input
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Confirm Password
-					<input
-						type="password"
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<button type="submit">Sign Up</button>
-			</form>
-		</>
+		<div className="login-page">
+			<div className="signup-page-form-container">
+				<div>
+					<h1 className="signup-form-header">CREATE YOUR ACCOUNT</h1>
+					<form onSubmit={handleSubmit} className="signup-page-form">
+						<div style={{ color: 'red' }}>
+							{errors.map((error, idx) => (
+								<div key={idx}>{error}</div>
+							))}
+						</div>
+						<div style={{ color: '#AFAFAF', fontSize: '13px', fontWeight: 'bold' }}>
+							Email Address
+						</div>
+						<input
+							type="text"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							required
+							style={{ padding: '6px 8px', width: '25em', backgroundColor: '#32353C', border: 'none', borderRadius: '2px', color: 'white' }}
+						/>
+						<div style={{ color: '#AFAFAF', fontSize: '13px', fontWeight: 'bold' }}>
+							Username
+						</div>
+						<input
+							type="text"
+							value={username}
+							onChange={(e) => setUsername(e.target.value)}
+							required
+							style={{ padding: '6px 8px', width: '25em', backgroundColor: '#32353C', border: 'none', borderRadius: '2px', color: 'white' }}
+						/>
+						<div style={{ color: '#AFAFAF', fontSize: '13px', fontWeight: 'bold' }}>
+							Profile Picture
+							<input
+								type='file'
+								accept=".jpg, .jpeg, .png"
+								onChange={(e) => setProfile_pic(e.target.files[0])}
+								placeholder='Profile Picture'
+								name='profile_pic'
+							/>
+						</div>
+						<div style={{ color: '#AFAFAF', fontSize: '13px', fontWeight: 'bold' }}>
+							Password
+						</div>
+						<input
+							type="password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							required
+							style={{ padding: '6px 8px', width: '25em', backgroundColor: '#32353C', border: 'none', borderRadius: '2px', color: 'white' }}
+						/>
+						<div style={{ color: '#AFAFAF', fontSize: '13px', fontWeight: 'bold' }}>
+							Confirm Password
+						</div>
+						<input
+							type="password"
+							value={confirmPassword}
+							onChange={(e) => setConfirmPassword(e.target.value)}
+							required
+							style={{ padding: '6px 8px', width: '25em', backgroundColor: '#32353C', border: 'none', borderRadius: '2px', color: 'white' }}
+						/>
+						<button className="signup-page-button" type="submit">Sign Up</button>
+					</form>
+				</div>
+			</div>
+		</div>
 	);
 }
 

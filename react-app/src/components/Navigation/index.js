@@ -13,6 +13,7 @@ function Navigation({ isLoaded }) {
 	const userCartArr = Object.values(userCart)
 	const userReviews = useSelector(state => state.reviews.userReviews);
 	const userReviewsArr = Object.values(userReviews)
+
 	console.log(locationArr)
 
 	const countUserCart = () => {
@@ -24,8 +25,10 @@ function Navigation({ isLoaded }) {
 	}
 
 	const findReviewGameName = (reviewId) => {
-		const review = userReviewsArr.find((review) => review.id == reviewId)
-		return review.game_name
+		if (userReviewsArr.length) {
+			const review = userReviewsArr.find((review) => review.id === reviewId)
+			return review.game_name
+		}
 	}
 
 	const renderUserLocation = () => {
@@ -33,7 +36,7 @@ function Navigation({ isLoaded }) {
 			return (
 				<>
 					<div>
-						» Reviews » {findReviewGameName(parseInt(locationArr[3]))}
+						» <NavLink style={{ textDecoration: 'none', cursor: 'pointer', color: 'white'}} to='/reviews/user'>Reviews</NavLink> » {findReviewGameName(parseInt(locationArr[3]))}
 					</div>
 				</>
 			)
@@ -45,6 +48,30 @@ function Navigation({ isLoaded }) {
 					<div>
 						» Games » Reviews
 					</div>
+				</>
+			)
+		}
+	}
+
+	const blueNavBarOptions = () => {
+		if (sessionUser) {
+			return (
+				<>
+					<button className='nav-bar-green-options-buttons' onClick={() => history.push('/')}>Your Store</button>
+					<button className='nav-bar-green-options-buttons' onClick={() => history.push('/reviews/user')}>Your Reviews</button>
+					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>Your Library</button>
+					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>Categories</button>
+					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>News</button>
+				</>
+			)
+		} else {
+			return (
+				<>
+					<button className='nav-bar-green-options-buttons' onClick={() => history.push('/')}>Store</button>
+					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>New & Noteworthy</button>
+					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>Categories</button>
+					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>Points Shop</button>
+					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>News</button>
 				</>
 			)
 		}
@@ -66,9 +93,9 @@ function Navigation({ isLoaded }) {
 								</div>
 								<div className='homepage-user-navoptions'>
 									<div onClick={() => history.push('/')} style={{ cursor: "pointer" }}>STORE</div>
-									<div>COMMUNITY</div>
-									<div>ABOUT</div>
-									<div>SUPPORT</div>
+									<div style={{ cursor: 'not-allowed'}}>COMMUNITY</div>
+									<div style={{ cursor: 'not-allowed'}}>ABOUT</div>
+									<div style={{ cursor: 'not-allowed'}}>SUPPORT</div>
 								</div>
 								<div className='homepage-user-interact'>
 									<button className='install-steam-button'>
@@ -103,11 +130,7 @@ function Navigation({ isLoaded }) {
 							</div>
 							<div className='nav-green-bar'>
 								<div className='nav-bar-green-options'>
-									<button className='nav-bar-green-options-buttons'>Your Store</button>
-									<button className='nav-bar-green-options-buttons'>News & Noteworthy</button>
-									<button className='nav-bar-green-options-buttons'>Categories</button>
-									<button className='nav-bar-green-options-buttons'>Points Shop</button>
-									<button className='nav-bar-green-options-buttons'>News</button>
+									{blueNavBarOptions()}
 								</div>
 								<div>
 									<div>Search Bar</div>

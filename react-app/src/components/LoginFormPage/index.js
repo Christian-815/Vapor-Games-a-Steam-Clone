@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 import './LoginForm.css';
-import { NavLink } from "react-router-dom";
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -35,42 +34,69 @@ function LoginFormPage() {
   }
 
   return (
-    <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
-        <div className='or-text'>or</div>
-        <button className="demo-user-button" onClick={demoUser}>Log in as Demo User</button>
+    <div className="login-page">
+      <div className="login-page-form-container">
         <div>
-          <NavLink to='/signup' className="login-button">
-            Join Steam
-          </NavLink>
+          <h1 className="login-form-header">SIGN IN</h1>
+          <form onSubmit={handleSubmit} className="login-page-form">
+            <div style={{ color: 'red' }}>
+              {errors.map((error, idx) => (
+                <div key={idx}>{error}</div>
+              ))}
+            </div>
+            <div style={{ color: '#1999FF', fontSize: '13px', fontWeight: 'bold'}}>
+              SIGN IN WITH EMAIL
+            </div>
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              style={{padding: '8px 8px'}}
+            />
+            <div style={{ color: '#AFAFAF', fontSize: '13px', fontWeight: 'bold' }}>
+              PASSWORD
+            </div>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              style={{padding: '8px 8px'}}
+            />
+            <button className="login-page-button" type="submit">Sign In</button>
+            <div className='or-text' style={{ alignSelf: 'center', color: 'white'}}>or</div>
+            <button className="login-page-button" onClick={demoUser}>Log in as Demo User</button>
+          </form>
         </div>
-      </form>
-    </>
+      </div>
+      <div className="login-page-footer">
+        <div className="login-page-footer-info">
+          <div>
+            Join Steam and discover
+          </div>
+          <div>
+            thousands of games to play.
+          </div>
+          <div>
+            <NavLink to='/signup' className="signup-text">
+              Join Steam
+            </NavLink>
+          </div>
+        </div>
+        <div>
+          <img style={{ maxWidth: '200px' }} src='https://store.cloudflare.steamstatic.com/public/shared/images/login/join_pc.png?v=1' />
+        </div>
+        <div className="login-page-footer-info">
+          <div>
+            <NavLink to='/signup' className="signup-footer-button">
+              Join Steam
+            </NavLink>
+          </div>
+          <div style={{ marginTop: '1em'}}>It's free and easy to use.</div>
+        </div>
+      </div>
+    </div>
   );
 }
 
