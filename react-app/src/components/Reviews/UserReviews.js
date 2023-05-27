@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserReviews } from '../../store/reviews';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, NavLink, Link } from 'react-router-dom';
 
 
 const UserReviews = () => {
@@ -49,7 +49,23 @@ const UserReviews = () => {
 
     return (
         <>
-            <div className='user-reviews-page-container'>
+            <div className='user-page-container'>
+
+                <div className='show-list'>
+                    <Link to='/library' className='unactive-list'>
+                        <div>All Games</div>
+                    </Link>
+                    <Link to='/library/installed' className='unactive-list'>
+                        <div>Installed</div>
+                    </Link>
+                    <Link to='/library/uninstalled' className='unactive-list'>
+                        <div>Uninstalled</div>
+                    </Link>
+                    <NavLink to='/reviews/user' activeClassName='active-list'>
+                        <div>Reviews</div>
+                    </NavLink>
+                </div>
+
                 <div className='user-reviews-page-header'>
                     Recent reviews by {user.username}
                 </div>

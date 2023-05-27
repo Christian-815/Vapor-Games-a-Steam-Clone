@@ -1,0 +1,91 @@
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Motiva Sans", Sans-serif;
+}
+
+.login-page-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    background: url(https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg) center;
+    width: 100vw;
+    height: 65vh;
+}
+
+.login-form-header {
+    font-weight: lighter;
+    color: white;
+    font-size: 32px;
+}
+
+.login-page-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.7em;
+    background-color: #181a21;
+    width: 30em;
+    height: 20em;
+    padding: 2em 3em;
+    border-radius: 3px;
+}
+
+.login-page-button {
+    align-self: center;
+    padding: 1em 0em;
+    width: 20em;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    background: linear-gradient(90deg, #06BFFF 0%, #2D73FF 100%);
+    cursor: pointer;
+}
+
+.login-page-footer {
+    background-color: #181A21;
+    width: 100vw;
+    height: 26vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1em;
+}
+
+.login-page-footer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.3em;
+    color: #B8B6B4;
+    font-size: 16px;
+}
+
+.signup-text {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    background: none;
+    border: none;
+}
+
+.signup-text:hover {
+    text-decoration: none;
+    color: #54a5d4;
+}
+
+.signup-footer-button {
+    border: 1px solid grey;
+    border-radius: 2px;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    color: white;
+    box-shadow: 0px 0px 2px white;
+    cursor: pointer;
+}
+
+.signup-footer-button:hover {
+    border: 1px solid white;
+}
