@@ -241,6 +241,9 @@
 .indiv-user-review-right {
     width: auto;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2em;
 }
 
 .indiv-user-review-page {
@@ -279,7 +282,6 @@
     padding: 1em 1em;
     margin: 0em auto;
     font-family: Arial, Helvetica, sans-serif;
-
 }
 
 .user-review-details {
@@ -372,4 +374,60 @@
     color: white;
     font-size: 17px;
     cursor: pointer;
+}
+
+.user-reviews-page-container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: flex-start;
+    width: 63em;
+}
+
+.user-reviews-page-header {
+    margin-top: 1em;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 0.7em;
+}
+
+.user-reviews-page-reviews {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+}
+
+.user-reviews-page-indiv-review-border {
+    height: 200px;
+    width: 52em;
+    background: rgb(2, 202, 255);
+    background: linear-gradient(90deg, rgba(2, 202, 255, 1) 0%, rgba(49, 106, 255, 1) 71%);
+    padding: 1px 0em 0em 0em;
+}
+
+.user-reviews-page-indiv-review {
+    width: 50em;
+    height: 10em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 0.5em;
+    padding: 1.5em 1em;
+    font-family: Arial, Helvetica, sans-serif;
+    background: rgb(56, 60, 63);
+    background: linear-gradient(69deg, rgba(56, 60, 63, 1) 0%, rgba(91, 100, 106, 1) 64%);
+}
+
+.user-reviews-indiv-details-recommended {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 3.5em;
+    width: 35em;
+    background-color: #1B2533;
+    column-gap: 1em;
+    padding: 0em 1em 0em;
+    color: #D6D7D8;
 }
