@@ -73,14 +73,14 @@ function LoginFormPage() {
       <div className="login-page-footer">
         <div className="login-page-footer-info">
           <div>
-            Join Steam and discover
+            Join Vapor Games and discover
           </div>
           <div>
             thousands of games to play.
           </div>
           <div>
             <NavLink to='/signup' className="signup-text">
-              Join Steam
+              Join Vapor Games
             </NavLink>
           </div>
         </div>
@@ -90,7 +90,7 @@ function LoginFormPage() {
         <div className="login-page-footer-info">
           <div>
             <NavLink to='/signup' className="signup-footer-button">
-              Join Steam
+              Join Vapor Games
             </NavLink>
           </div>
           <div style={{ marginTop: '1em'}}>It's free and easy to use.</div>

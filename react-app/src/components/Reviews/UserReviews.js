@@ -52,15 +52,15 @@ const UserReviews = () => {
             <div className='user-page-container'>
 
                 <div className='show-list'>
-                    <Link to='/library' className='unactive-list'>
+                    <div to='/library' className='unactive-list'>
                         <div>All Games</div>
-                    </Link>
-                    <Link to='/library/installed' className='unactive-list'>
+                    </div>
+                    <div to='/library/installed' className='unactive-list'>
                         <div>Installed</div>
-                    </Link>
-                    <Link to='/library/uninstalled' className='unactive-list'>
+                    </div>
+                    <div to='/library/uninstalled' className='unactive-list'>
                         <div>Uninstalled</div>
-                    </Link>
+                    </div>
                     <NavLink to='/reviews/user' activeClassName='active-list'>
                         <div>Reviews</div>
                     </NavLink>
