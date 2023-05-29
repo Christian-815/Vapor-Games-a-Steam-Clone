@@ -182,6 +182,70 @@ const GameReviews = () => {
         setRecommended(null)
     }
 
+    const getReviewAvg = (gameReviewsArr) => {
+        if (gameReviewsArr) {
+            let good = 0;
+            let bad = 0;
+            const greatAvg = gameReviewsArr.length * 0.8
+            const goodAvg = gameReviewsArr.length * 0.6
+            const badAvg = gameReviewsArr.length * 0.4
+
+            gameReviewsArr.forEach(review => {
+                if (review.recommended === true) good += 1
+                if (review.recommended === false) bad += 1
+            })
+
+            if (good >= greatAvg) {
+                return (
+                    <>
+                        <div style={{ color: '#4CA3C5', fontSize: '13px' }}>Very Positive ({gameReviewsArr.length})</div>
+                    </>
+                )
+            } else if (good >= goodAvg) {
+                return (
+                    <>
+                        <div style={{ color: '#4CA3C5', fontSize: '13px' }}>Mostly Positive ({gameReviewsArr.length})</div>
+                    </>
+                )
+            } else if (bad <= badAvg) {
+                return (
+                    <>
+                        <div style={{ color: '#673017', fontSize: '13px' }}>Mostly Negative ({gameReviewsArr.length})</div>
+                    </>
+                )
+            } else {
+                return (
+                    <>
+                        <div style={{ color: '#907B6F', fontSize: '13px' }}>Mixed ({gameReviewsArr.length})</div>
+                    </>
+                )
+            }
+        }
+    }
+
+    const checkRecommeneded = (recommended) => {
+        // console.log('in here')
+        if (recommended) {
+            return (
+                <>
+                    <span><i class="thumb_icons thumb_up"></i></span>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <span><i class="thumb_icons thumb_down"></i></span>
+                </>
+            )
+        }
+    }
+
+    function formatDate(created_at) {
+        const dateObj = new Date(created_at);
+        const options = { month: "long", day: "numeric", year: "numeric" };
+        return dateObj.toLocaleDateString("en-US", options);
+    }
+
     // if (!gameReviews) return null;
 
     return (
@@ -190,26 +254,59 @@ const GameReviews = () => {
             <div className="game-reviews-list">
                 <div>
                     <div>
-                        <h4>CUSTOMER REVIEWS</h4>
-                        <div>
-                            Overall Reviews:
-                            rating placeholder (#reviews)
+                        <h4 style={{ color: 'white'}}>
+                            CUSTOMER REVIEWS
+                        </h4>
+                        <div className="game-reviews-list-header">
+                            <div>
+                                Overall Reviews:
+                            </div>
+                            <div>
+                                {getReviewAvg(gameReviewsArr)}
+                            </div>
                         </div>
                     </div>
-                    {gameReviewsArr.map((review) => {
-                        return (
-                            <div key={review.id} style={{ color: 'white' }}>
-                                <div>
-                                    <img src={review.reviewer_profile_pic} alt="user picture" className="leave-review-user-pic" />
-                                    {review.reviewer_username}
+                    <div className="game-reviews-list-all">
+                        {gameReviewsArr.map((review) => {
+                            return (
+                                <div key={review.id} className="users-reviews-div">
+                                    <div style={{ display: 'flex', columnGap: '0.5em'}}>
+                                        <img src={review.reviewer_profile_pic} alt="user picture" className="leave-review-user-pic" />
+                                        <div style={{ color: 'white' }}>
+                                            {review.reviewer_username}
+                                        </div>
+                                    </div>
+                                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', width: '592px'}}>
+                                        <div className='user-reviews-indiv-details-recommended'>
+                                            <div style={{ display: 'flex', columnGap: '1em' }}>
+                                                <div>
+                                                    {checkRecommeneded(review.recommended)}
+                                                </div>
+                                                <div>
+                                                    {review.recommended ?
+                                                        <>
+                                                            Recommended
+                                                        </> :
+                                                        <>
+                                                            Not Recommened
+                                                        </>}
+                                                </div>
+                                            </div>
+                                            <div className='user-review-details-icon'>
+                                                <img src='https://community.cloudflare.steamstatic.com/public/shared/images/userreviews/icon_review_steam.png' />
+                                            </div>
+                                        </div>
+                                        <div style={{ color: '#acb2b8', marginBottom: '1em' }}>
+                                            <div style={{ color: '#8091a2', fontSize: '11px', marginBottom: '3em' }}>
+                                                POSTED: {formatDate(review.created_at)}
+                                            </div>
+                                            <div>{review.description}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div >
-                                    {review.description}
-                                    {/* {review.created_at} */}
-                                </div>
-                            </div>
-                        )
-                    })}
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
         </div>

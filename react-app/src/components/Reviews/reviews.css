@@ -5,7 +5,8 @@
     row-gap: 0.5em;
     padding: 1em 1em;
     margin: 0em auto;
-    max-width: 57em;
+    width: 57em;
+    /* max-width: 57em; */
     max-height: 28em;
     font-family: Arial, Helvetica, sans-serif;
     background: linear-gradient(135deg, rgba(97, 100, 101, 0.3) 0%, rgba(226, 244, 255, 0.3) 100%);
@@ -209,14 +210,6 @@
 .update-review-button:hover {
     color: white;
     background: #54a5d4;
-}
-
-.game-reviews-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0em auto;
-    max-width: 59em;
 }
 
 .indiv-user-review-block {
