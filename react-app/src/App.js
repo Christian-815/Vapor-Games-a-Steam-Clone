@@ -13,6 +13,7 @@ import Navigation from "./components/Navigation";
 import { getUserReviews } from "./store/reviews";
 import { GetUserCart } from "./store/carts";
 import { getAllGames } from "./store/games";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();

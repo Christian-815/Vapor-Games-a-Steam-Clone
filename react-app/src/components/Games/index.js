@@ -10,6 +10,7 @@ const GetAllGames = () => {
     const history = useHistory();
     const allGames = useSelector(state => state.games.allGames)
     const allGamesArr = Object.values(allGames)
+    const user = useSelector(state => state.session.user)
     const [gamesKey, setGamesKey] = useState(1);
     const [mainImg, setMainImg] = useState(null)
 
@@ -129,6 +130,34 @@ const GetAllGames = () => {
                     )
                 })}
             </div>
+            {user ? null :
+                <div className="home-page-footer">
+                    <div className="login-page-footer-info">
+                        <div>
+                            Join Vapor Games and discover
+                        </div>
+                        <div>
+                            thousands of games to play.
+                        </div>
+                        <div>
+                            <NavLink to='/signup' className="signup-text">
+                                Join Vapor Games
+                            </NavLink>
+                        </div>
+                    </div>
+                    <div>
+                        <img style={{ maxWidth: '200px' }} src='https://store.cloudflare.steamstatic.com/public/shared/images/login/join_pc.png?v=1' />
+                    </div>
+                    <div className="login-page-footer-info">
+                        <div>
+                            <NavLink to='/signup' className="signup-footer-button">
+                                Join Vapor Games
+                            </NavLink>
+                        </div>
+                        <div style={{ marginTop: '1em' }}>It's free and easy to use.</div>
+                    </div>
+                </div>
+            }
         </>
     )
 }

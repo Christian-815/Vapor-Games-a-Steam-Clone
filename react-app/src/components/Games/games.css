@@ -90,3 +90,17 @@
 .home-page-indiv-game-block:hover {
     background-color: #A0C6DC;
 }
+
+.home-page-footer {
+    background-color: #181A21;
+    width: 100vw;
+    height: 10em;
+    margin-top: 2em;
+    margin-left: -1em;
+    margin-bottom: -1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1em;
+}
