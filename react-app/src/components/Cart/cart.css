@@ -136,3 +136,19 @@
     color: white;
     background: linear-gradient(135deg, #54a5d4 0%, rgba(103, 193, 245, 0.2) 100%);
 }
+
+.cart-page-footer {
+    background-color: #181A21;
+    position: absolute;
+    bottom: 0em;
+    width: 100vw;
+    height: 10em;
+    margin-top: 2em;
+    margin-left: -1em;
+    margin-bottom: -1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1em;
+}
