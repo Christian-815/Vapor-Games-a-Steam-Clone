@@ -4,3 +4,60 @@
     margin: auto;
     width: 50em;
 }
+
+.featured-games-div {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 60em;
+}
+
+.featured-games-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 18em;
+}
+
+.featured-game-arrow-right {
+    padding: 1em 1em;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 0.3) 95%);
+    cursor: pointer;
+}
+
+.featured-game-arrow-right:hover {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 5%, #485F72 95%);
+}
+
+.featured-game-arrow-left {
+    padding: 1em 1em;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.3) 5%, rgba(0, 0, 0, 0) 95%);
+    cursor: pointer;
+}
+
+.featured-game-arrow-left:hover {
+    background: linear-gradient(to right, #485F72 5%, rgba(0, 0, 0, 0) 95%);
+}
+
+.featured-games-game {
+    width: 55em;
+    height: 100%;
+    display: flex;
+}
+
+.featured-games-game-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 18em;
+    padding: 1.5em 0em;
+    color: white;
+    background-image: url('https://store.cloudflare.steamstatic.com/public/images/v6/home/background_maincap_2.jpg');
+}
+
+.featured-games-game-right-images {
+    width: 17.5em;
+    display: flex;
+    flex-direction: row;
+}

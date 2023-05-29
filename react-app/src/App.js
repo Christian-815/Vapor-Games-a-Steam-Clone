@@ -12,13 +12,15 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import { getUserReviews } from "./store/reviews";
 import { GetUserCart } from "./store/carts";
+import { getAllGames } from "./store/games";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(state => state.session.user)
 
-  useEffect(() => {
+  useEffect(async () => {
+    await dispatch(getAllGames())
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
