@@ -37,6 +37,7 @@
     width: 55em;
     height: 100%;
     display: flex;
+    cursor: pointer;
 }
 
 .featured-games-game-right {
