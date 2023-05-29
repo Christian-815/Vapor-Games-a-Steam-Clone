@@ -13,8 +13,8 @@ function Navigation({ isLoaded }) {
 	const userCartArr = Object.values(userCart)
 	const userReviews = useSelector(state => state.reviews.userReviews);
 	const userReviewsArr = Object.values(userReviews)
-
-	console.log(locationArr)
+	const allGames = useSelector(state => state.games.allGames)
+	const allGamesArr = Object.values(allGames)
 
 	const countUserCart = () => {
 		if (!userCartArr.length || !sessionUser) {
@@ -77,9 +77,16 @@ function Navigation({ isLoaded }) {
 		}
 	}
 
+	const findItTakesTwo = () => {
+		if (allGamesArr) {
+			const itTakesTwo = allGamesArr.find((game) => game.game_name === 'It Takes Two')
+			return itTakesTwo.id
+		}
+	}
+
 
 	const renderNavBar = () => {
-		if (locationArr[1] === '' || locationArr[1] === 'cart' || locationArr[1] === 'games') {
+		if (locationArr[1] === '') {
 			return (
 				<>
 					<div className='nav-bar-green'>
@@ -124,6 +131,72 @@ function Navigation({ isLoaded }) {
 							</div>
 						</div>
 
+						<div className='home-banner' onClick={() => history.push(`/games/${findItTakesTwo()}`)}>
+							<div className='nav-bar-seperator'>
+								<div className='nav-cart-button-div'>
+									<button className='nav-cart-button' onClick={(e) => {
+										e.stopPropagation()
+										history.push('/cart')
+									}}>CART ({countUserCart()})</button>
+								</div>
+								<div className='nav-green-bar'>
+									<div className='nav-bar-green-options'>
+										{blueNavBarOptions()}
+									</div>
+									<div>
+										<div style={{ color: '#10226F' }}>Search Bar</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</>
+			)
+		} else if (locationArr[1] === 'cart' || locationArr[1] === 'games') {
+			return (
+				<>
+					<div className='nav-bar-green'>
+						<div className='Nav-bar'>
+							<div className='nav-bar-content'>
+								<div>
+									<NavLink exact to="/" className='homepage-logo'>
+										<img alt="icon" src="/images/steam-homelogo.png" className='home-logo' />
+										VAPOR GAMES™
+									</NavLink>
+								</div>
+								<div className='homepage-user-navoptions'>
+									<div onClick={() => history.push('/')} style={{ cursor: "pointer" }}>STORE</div>
+									<div style={{ cursor: 'not-allowed' }}>COMMUNITY</div>
+									<div style={{ cursor: 'not-allowed' }}>ABOUT</div>
+									<div style={{ cursor: 'not-allowed' }}>SUPPORT</div>
+								</div>
+								<div className='homepage-user-interact'>
+									<button className='install-steam-button'>
+										<div>
+											<img alt="icon" src="/images/install-steam-button.png" className='install-logo' />
+										</div>
+										<div>
+											InstallVapor
+										</div>
+									</button>
+									{sessionUser ? (
+										<div className='navbar-user-loggedin'>
+											<div>
+												<ProfileButton user={sessionUser} />
+											</div>
+											<div>
+												<img className='navbar-user-pic' src={sessionUser.profile_pic} />
+											</div>
+										</div>
+									) : (
+										<NavLink to='/login' className="login-button">
+											login
+										</NavLink>
+									)}
+								</div>
+							</div>
+						</div>
+
 						<div className='nav-bar-seperator'>
 							<div className='nav-cart-button-div'>
 								<button className='nav-cart-button' onClick={() => history.push('/cart')}>CART ({countUserCart()})</button>
@@ -133,7 +206,7 @@ function Navigation({ isLoaded }) {
 									{blueNavBarOptions()}
 								</div>
 								<div>
-									<div>Search Bar</div>
+									<div style={{ color: '#10226F' }}>Search Bar</div>
 								</div>
 							</div>
 						</div>
@@ -154,9 +227,9 @@ function Navigation({ isLoaded }) {
 								</div>
 								<div className='homepage-user-navoptions'>
 									<div onClick={() => history.push('/')} style={{ cursor: "pointer" }}>STORE</div>
-									<div>COMMUNITY</div>
-									<div>ABOUT</div>
-									<div>SUPPORT</div>
+									<div style={{ cursor: 'not-allowed'}}>COMMUNITY</div>
+									<div style={{ cursor: 'not-allowed'}}>ABOUT</div>
+									<div style={{ cursor: 'not-allowed'}}>SUPPORT</div>
 								</div>
 								<div className='homepage-user-interact'>
 									<button className='install-steam-button'>

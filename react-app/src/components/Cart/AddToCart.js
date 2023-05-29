@@ -30,7 +30,7 @@ const AddToUserCart = () => {
         if (userCartArr.length > 0) {
             userCartArr.forEach(game => {
                 // console.log("game----------->>>", game.product_id, product_id)
-                if (game.game_id == game_id) {
+                if (game.game_id === game_id) {
                     window.alert("You already have this game in your cart")
                     gameQuantityExceeded = true;
                     return
