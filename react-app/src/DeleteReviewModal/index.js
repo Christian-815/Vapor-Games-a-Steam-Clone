@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useModal } from '../context/Modal';
 import './DeleteReview.css'
-import { deleteReview, getUserReviews } from '../store/reviews';
+import { deleteReview } from '../store/reviews';
 import { useHistory } from 'react-router-dom';
 
 

@@ -21,7 +21,7 @@ const ShoppingCart = () => {
     const calculateTotal = () => {
         let total = 0;
 
-        userCartArr.map((cartItem) => {
+        userCartArr.forEach((cartItem) => {
             total += cartItem.game_info.price
         })
 

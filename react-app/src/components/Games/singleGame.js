@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import React from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getAllGames, getOneGame } from "../../store/games";
 import AddToUserCart from "../Cart/AddToCart";
 import GameReviews from "../Reviews";
@@ -33,28 +33,30 @@ const GetOneGame = () => {
         if (gameReviewsArr) {
             let good = 0;
             let bad = 0;
-            const greatAvg = gameReviewsArr.length * 0.8
-            const goodAvg = gameReviewsArr.length * 0.6
-            const badAvg = gameReviewsArr.length * 0.4
+            const greaterThan80 = gameReviewsArr.length * 0.8
+            const greaterThan60 = gameReviewsArr.length * 0.6
 
             gameReviewsArr.forEach(review => {
-                if (review.recommended === true) good += 1
-                if (review.recommended === false) bad += 1
+                if (review.recommended === true) {
+                    good += 1
+                } else {
+                    bad += 1
+                }
             })
 
-            if (good >= greatAvg) {
+            if (good >= greaterThan80) {
                 return (
                     <>
                         <div style={{ color: '#4CA3C5', fontSize: '13px' }}>Very Positive ({gameReviewsArr.length})</div>
                     </>
                 )
-            } else if (good >= goodAvg) {
+            } else if (good >= greaterThan60) {
                 return (
                     <>
                         <div style={{ color: '#4CA3C5', fontSize: '13px' }}>Mostly Positive ({gameReviewsArr.length})</div>
                     </>
                 )
-            } else if (bad <= badAvg) {
+            } else if (bad >= greaterThan60) {
                 return (
                     <>
                         <div style={{ color: '#673017', fontSize: '13px'}}>Mostly Negative ({gameReviewsArr.length})</div>

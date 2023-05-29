@@ -124,7 +124,6 @@ const SingleReview = () => {
     }
 
     const checkRecommeneded = (recommended) => {
-        console.log('in here')
         if (recommended) {
             return (
                 <>

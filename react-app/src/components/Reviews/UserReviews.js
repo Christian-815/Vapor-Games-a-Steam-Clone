@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getUserReviews } from '../../store/reviews';
-import { useHistory, NavLink, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux'
+import { useHistory, NavLink } from 'react-router-dom';
 
 
 const UserReviews = () => {
-    const dispatch = useDispatch();
     const history = useHistory()
 
     const userReviews = useSelector(state => state.reviews.userReviews)
