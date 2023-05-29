@@ -57,8 +57,22 @@ function Navigation({ isLoaded }) {
 		if (sessionUser) {
 			return (
 				<>
-					<button className='nav-bar-green-options-buttons' onClick={() => history.push('/')}>Your Store</button>
-					<button className='nav-bar-green-options-buttons' onClick={() => history.push('/reviews/user')}>Your Reviews</button>
+					<button
+					className='nav-bar-green-options-buttons'
+					onClick={(e) => {
+						e.stopPropagation()
+						history.push('/')
+					}}>
+						Your Store
+					</button>
+					<button
+					className='nav-bar-green-options-buttons'
+					onClick={(e) => {
+						e.stopPropagation()
+						history.push('/reviews/user')
+					}}>
+						Your Reviews
+					</button>
 					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>Your Library</button>
 					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>Categories</button>
 					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>News</button>
@@ -67,7 +81,14 @@ function Navigation({ isLoaded }) {
 		} else {
 			return (
 				<>
-					<button className='nav-bar-green-options-buttons' onClick={() => history.push('/')}>Store</button>
+					<button
+					className='nav-bar-green-options-buttons'
+					onClick={(e) => {
+						e.stopPropagation()
+						history.push('/')
+					}}>
+						Store
+					</button>
 					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>New & Noteworthy</button>
 					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>Categories</button>
 					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>Points Shop</button>
