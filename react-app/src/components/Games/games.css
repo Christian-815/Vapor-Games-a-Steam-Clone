@@ -1,6 +1,92 @@
+.featured-games-div {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 60em;
+}
+
+.featured-games-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 18em;
+}
+
+.featured-game-arrow-right {
+    padding: 1em 1em;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 0.3) 95%);
+    cursor: pointer;
+}
+
+.featured-game-arrow-right:hover {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0) 5%, #485F72 95%);
+}
+
+.featured-game-arrow-left {
+    padding: 1em 1em;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.3) 5%, rgba(0, 0, 0, 0) 95%);
+    cursor: pointer;
+}
+
+.featured-game-arrow-left:hover {
+    background: linear-gradient(to right, #485F72 5%, rgba(0, 0, 0, 0) 95%);
+}
+
+.featured-games-game {
+    width: 55em;
+    height: 100%;
+    display: flex;
+}
+
+.featured-games-game-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 18em;
+    padding: 1.5em 0em;
+    color: white;
+    background-image: url('https://store.cloudflare.steamstatic.com/public/images/v6/home/background_maincap_2.jpg');
+}
+
+.featured-games-game-right-images {
+    width: 17.5em;
+    display: flex;
+    flex-direction: row;
+}
+
+.featured-game-scroll-bar {
+    background-color: hsla(202, 60%, 100%, 0.2);
+    border-radius: 2px;
+    border: none;
+    width: 20px;
+    height: 10px;
+}
+
+.featured-game-scroll-bar.active {
+    border-radius: 2px;
+    border: none;
+    width: 20px;
+    height: 10px;
+    background-color: hsla(202, 60%, 100%, 0.4);
+}
+
 .home-games-list {
     display: flex;
     flex-direction: column;
     margin: auto;
-    width: 50em;
+    margin-top: 2em;
+    width: 40em;
+    row-gap: 0.5em;
+}
+
+.home-page-indiv-game-block {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1em;
+    background-color: #22394B;
+}
+
+.home-page-indiv-game-block:hover {
+    background-color: #A0C6DC;
 }

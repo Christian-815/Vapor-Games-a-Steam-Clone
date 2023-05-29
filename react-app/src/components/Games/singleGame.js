@@ -30,7 +30,7 @@ const GetOneGame = () => {
     }
 
     const getReviewAvg = (gameReviewsArr) => {
-        if (gameReviewsArr) {
+        if (gameReviewsArr.length) {
             let good = 0;
             let bad = 0;
             const greaterThan80 = gameReviewsArr.length * 0.8
@@ -69,6 +69,12 @@ const GetOneGame = () => {
                     </>
                 )
             }
+        } else {
+            return (
+                <>
+                    <div style={{ color: '#4CA3C5', fontSize: '13px' }}>No Reviews</div>
+                </>
+            )
         }
     }
 
