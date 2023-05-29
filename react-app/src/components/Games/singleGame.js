@@ -82,7 +82,7 @@ const GetOneGame = () => {
 
     return (
         <div className="single-game-page-container">
-            <h1 style={{ color: 'white', paddingRight: '15.5em' }}>{game.game_name}</h1>
+            <h1 style={{ color: 'white', width: '944px' }}>{game.game_name}</h1>
             <div className="single-game-banner">
                 <div>
                     <div>
