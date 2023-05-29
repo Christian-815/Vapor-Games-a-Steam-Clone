@@ -2,11 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import React from "react";
 import { getAllGames } from "../../store/games";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import './games.css'
 
 const GetAllGames = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const allGames = useSelector(state => state.games.allGames)
     const allGamesArr = Object.values(allGames)
     const [gamesKey, setGamesKey] = useState(1);
@@ -39,6 +40,10 @@ const GetAllGames = () => {
         }
     }
 
+    const scrollBarActive = () => {
+
+    }
+
     const featuredGame = allGames[gamesKey]
 
 
@@ -55,7 +60,7 @@ const GetAllGames = () => {
                         <img src='/images/left-arrow.png' />
                     </div>
 
-                    <div className="featured-games-game">
+                    <div className="featured-games-game" onClick={() => history.push(`/games/${gamesKey}`)}>
                         <div style={{ width: '35em' }} onMouseOver={() => setMainImg(featuredGame.main_image)}>
                             {mainImg ?
                                 <img style={{ width: '100%', height: '100%', objectFit: 'fill' }} src={mainImg} />
@@ -88,21 +93,42 @@ const GetAllGames = () => {
                         <img src='/images/right-arrow.png' />
                     </div>
                 </div>
+                <div style={{ display: 'flex', columnGap: '0.3em', justifyContent: 'center', marginTop: '1em' }}>
+                    <div className={`featured-game-scroll-bar ${gamesKey === 1 ? 'active' : ''}`}></div>
+                    <div className={`featured-game-scroll-bar ${gamesKey === 2 ? 'active' : ''}`}></div>
+                    <div className={`featured-game-scroll-bar ${gamesKey === 3 ? 'active' : ''}`}></div>
+                    <div className={`featured-game-scroll-bar ${gamesKey === 4 ? 'active' : ''}`}></div>
+                    <div className={`featured-game-scroll-bar ${gamesKey === 5 ? 'active' : ''}`}></div>
+                    <div className={`featured-game-scroll-bar ${gamesKey === 6 ? 'active' : ''}`}></div>
+                    <div className={`featured-game-scroll-bar ${gamesKey === 7 ? 'active' : ''}`}></div>
+                    <div className={`featured-game-scroll-bar ${gamesKey === 8 ? 'active' : ''}`}></div>
+                    <div className={`featured-game-scroll-bar ${gamesKey === 9 ? 'active' : ''}`}></div>
+                    <div className={`featured-game-scroll-bar ${gamesKey === 10 ? 'active' : ''}`}></div>
+                </div>
             </div>
-            {/* <div className="home-games-list">
+            <div className="home-games-list">
                 {allGamesArr.map((game) => {
                     return (
                         <div key={game.id}>
                             <div>
                             </div>
-                            <NavLink to={`/games/${game.id}`}>
-                                <img src={game.main_img} />
-                                {game.game_name}
+                            <NavLink to={`/games/${game.id}`} style={{ textDecoration: 'none', color: 'white' }}>
+                                <div className="home-page-indiv-game-block">
+                                    <div>
+                                        <img style={{ width: '10em', height: '100%' }} src={game.main_img} />
+                                    </div>
+                                    <div style={{ flex: '2', paddingTop: '0.5em' }}>
+                                        {game.game_name}
+                                    </div>
+                                    <div style={{ display: 'flex', alignItems: 'center', paddingRight: '2em' }}>
+                                        ${game.price}
+                                    </div>
+                                </div>
                             </NavLink>
                         </div>
                     )
                 })}
-            </div> */}
+            </div>
         </>
     )
 }
