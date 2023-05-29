@@ -86,3 +86,44 @@
     background: linear-gradient(0deg, #8ED629 0%, #6AA621 100%);
     color: white;
 }
+
+.game-reviews-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0em auto;
+    width: 59em;
+    border-top: 2px solid black;
+    margin-top: 1em;
+}
+
+.game-reviews-list-header {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
+    width: 97%;
+    background-color: #2A475E;
+    box-shadow: 0px 0px 5px black;
+    padding: 1em 1em;
+    color: #e5e5e5;
+}
+
+.game-reviews-list-all {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+    margin-top: 1em;
+}
+
+.users-reviews-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1em 1em;
+    margin: 0em auto;
+    width: 57em;
+    height: 10em;
+    max-height: 30em;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #16202D;
+}

@@ -1,6 +1,5 @@
 html {
     background: rgb(24, 64, 80);
-    background: linear-gradient(160deg, rgba(24, 64, 80, 1) 22%, rgba(32, 48, 83, 1) 37%, rgba(27, 40, 56, 1) 72%);
+    background: linear-gradient(160deg, rgba(24, 64, 80, 1) 22%, rgba(32, 48, 83, 1) 37%, #1B2838 72%);
     font-family: Arial, Helvetica, sans-serif;
-    height: 100vh;
 }

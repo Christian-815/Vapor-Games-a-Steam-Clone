@@ -23,7 +23,7 @@ const UserReviews = () => {
     }, [user]);
 
     const checkRecommeneded = (recommended) => {
-        console.log('in here')
+        // console.log('in here')
         if (recommended) {
             return (
                 <>

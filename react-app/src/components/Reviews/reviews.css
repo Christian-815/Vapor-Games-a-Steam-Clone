@@ -212,14 +212,6 @@
     background: #54a5d4;
 }
 
-.game-reviews-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0em auto;
-    max-width: 59em;
-}
-
 .indiv-user-review-block {
     display: flex;
     flex-direction: row;

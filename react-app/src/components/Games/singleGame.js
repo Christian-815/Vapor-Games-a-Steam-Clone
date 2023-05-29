@@ -160,12 +160,26 @@ const GetOneGame = () => {
                         </div>
                     </div>
                 </div>
+                <div style={{ color: 'white', marginTop: '4em', borderBottom: '1px solid #396C88', paddingBottom: '0.3em', fontSize: '15px' }}>
+                    ABOUT THIS GAME
+                </div>
+                <div style={{ width: '40em', color: '#acb2b8', marginTop: '1em', fontSize: '15px' }}>
+                    {game.full_description}
+                </div>
+                <div style={{ marginTop: '1em'}}>
+                    <div>
+                        <img src={game.game_images[0].image} />
+                    </div>
+                    <div>
+                        <img src={game.game_images[1].image} />
+                    </div>
+                </div>
             </div>
 
 
-            {/* <div>
+            <div>
                 <GameReviews />
-            </div> */}
+            </div>
         </div>
     )
 }

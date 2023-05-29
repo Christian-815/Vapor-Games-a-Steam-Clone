@@ -103,7 +103,7 @@ function Navigation({ isLoaded }) {
 											<img alt="icon" src="/images/install-steam-button.png" className='install-logo' />
 										</div>
 										<div>
-											InstallSteam
+											InstallVapor
 										</div>
 									</button>
 									{sessionUser ? (
@@ -164,7 +164,7 @@ function Navigation({ isLoaded }) {
 											<img alt="icon" src="/images/install-steam-button.png" className='install-logo' />
 										</div>
 										<div>
-											InstallSteam
+											InstallVapor
 										</div>
 									</button>
 									{sessionUser ? (
