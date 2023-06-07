@@ -5,16 +5,16 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
-	const location = useLocation()
-	const history = useHistory()
-	const locationArr = location.pathname.split('/')
+	const location = useLocation();
+	const history = useHistory();
+	const locationArr = location.pathname.split('/');
 	const sessionUser = useSelector(state => state.session.user);
 	const userCart = useSelector(state => state.cart.userCart);
-	const userCartArr = Object.values(userCart)
+	const userCartArr = Object.values(userCart);
 	const userReviews = useSelector(state => state.reviews.userReviews);
-	const userReviewsArr = Object.values(userReviews)
-	const allGames = useSelector(state => state.games.allGames)
-	const allGamesArr = Object.values(allGames)
+	const userReviewsArr = Object.values(userReviews);
+	const allGames = useSelector(state => state.games.allGames);
+	const allGamesArr = Object.values(allGames);
 
 	const countUserCart = () => {
 		if (!userCartArr.length || !sessionUser) {
@@ -22,14 +22,14 @@ function Navigation({ isLoaded }) {
 		} else {
 			return userCartArr.length
 		}
-	}
+	};
 
 	const findReviewGameName = (reviewId) => {
 		if (userReviewsArr.length) {
 			const review = userReviewsArr.find((review) => review.id === reviewId)
 			return review.game_name
 		}
-	}
+	};
 
 	const renderUserLocation = () => {
 		if (locationArr[3]) {
@@ -51,7 +51,7 @@ function Navigation({ isLoaded }) {
 				</>
 			)
 		}
-	}
+	};
 
 	const blueNavBarOptions = () => {
 		if (sessionUser) {
@@ -96,14 +96,14 @@ function Navigation({ isLoaded }) {
 				</>
 			)
 		}
-	}
+	};
 
 	const findItTakesTwo = () => {
 		if (allGamesArr) {
 			const itTakesTwo = allGamesArr.find((game) => game.game_name === 'It Takes Two')
 			return itTakesTwo.id
 		}
-	}
+	};
 
 
 	const renderNavBar = () => {
@@ -323,7 +323,7 @@ function Navigation({ isLoaded }) {
 				</>
 			)
 		}
-	}
+	};
 
 	return (
 		<>
