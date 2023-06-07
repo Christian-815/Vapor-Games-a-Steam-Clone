@@ -73,9 +73,9 @@ function Navigation({ isLoaded }) {
 					}}>
 						Your Reviews
 					</button>
-					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>Your Library</button>
-					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>Categories</button>
-					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>News</button>
+					<button style={{ cursor: 'not-allowed' }} onClick={(e) => e.stopPropagation()} className='nav-bar-green-options-buttons'>Your Library</button>
+					<button style={{ cursor: 'not-allowed' }} onClick={(e) => e.stopPropagation()} className='nav-bar-green-options-buttons'>Categories</button>
+					<button style={{ cursor: 'not-allowed' }} onClick={(e) => e.stopPropagation()} className='nav-bar-green-options-buttons'>News</button>
 				</>
 			)
 		} else {
@@ -89,10 +89,10 @@ function Navigation({ isLoaded }) {
 					}}>
 						Store
 					</button>
-					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>New & Noteworthy</button>
-					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>Categories</button>
-					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>Points Shop</button>
-					<button style={{ cursor: 'not-allowed' }} className='nav-bar-green-options-buttons'>News</button>
+					<button style={{ cursor: 'not-allowed' }} onClick={(e) => e.stopPropagation()} className='nav-bar-green-options-buttons'>New & Noteworthy</button>
+					<button style={{ cursor: 'not-allowed' }} onClick={(e) => e.stopPropagation()} className='nav-bar-green-options-buttons'>Categories</button>
+					<button style={{ cursor: 'not-allowed' }} onClick={(e) => e.stopPropagation()} className='nav-bar-green-options-buttons'>Points Shop</button>
+					<button style={{ cursor: 'not-allowed' }} onClick={(e) => e.stopPropagation()} className='nav-bar-green-options-buttons'>News</button>
 				</>
 			)
 		}
