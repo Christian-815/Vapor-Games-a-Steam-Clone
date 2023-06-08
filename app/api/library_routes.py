@@ -2,7 +2,7 @@ from flask import Blueprint, session, request, jsonify
 from app.models import CartGame, Game, LibraryGame, db
 from flask_login import login_required
 
-library_routes = Blueprint('cart', __name__)
+library_routes = Blueprint('library', __name__)
 
 
 @library_routes.route('/')
@@ -15,8 +15,8 @@ def get_user_library():
 
     for game in library:
         game_id = game['game_id']
-        game = Game.query.get(game_id)
-        user_game = game.to_dict()
+        game_data = Game.query.get(game_id)
+        user_game = game_data.to_dict()
         game['game_info'] = user_game
 
     return library
@@ -28,24 +28,33 @@ def get_user_library():
 @login_required
 def add_to_library():
     owner_id = session.get('_user_id')
-    id = request.json.get('game_id')
-    # print('REQUEST=====================', request.json)
-    library_game = Game.query.get(id)
-    game_in_user_library = LibraryGame.query.filter(LibraryGame.game_id == id).filter(LibraryGame.user_id == owner_id).first()
+    game_list = request.get_json()
+    # print('REQUEST=====================', game_list)
+    # games_list = [game.to_dict() for game in game_list]
+
+
+
+    for game in game_list:
+        library_game = Game.query.get(game['game_id'])
+        game_in_user_library = LibraryGame.query.filter(LibraryGame.game_id == library_game.id).filter(LibraryGame.user_id == owner_id).first()
+        if game_in_user_library is None:
+            library_item = LibraryGame(user_id=owner_id, game_id=library_game.id, installed=False)
+            db.session.add(library_item)
+            db.session.commit()
+            library_item.to_dict()
+        else:
+            return {'Error': 'Game already exist in library.'}
+
+    # new_library_games = [game.to_dict() for game in game_list]
+
+    return game_list
+
 
     # print("DOES game EXIST IN USER library--------------", game_in_user_library.to_dict())
 
     # print ("OWNER ID--------------------", owner_id)
 
-    if game_in_user_library is None:
-        library_item = LibraryGame(user_id=owner_id, game_id=library_game.id, installed=False)
-        db.session.add(library_item)
-        db.session.commit()
 
-        return (library_item.to_dict())
-
-    else:
-        return {'Error': 'Game already exist in library.'}
 
 
 
@@ -70,8 +79,7 @@ def delete_game_from_library():
     return {'Message': "Game deleted from library"}
 
 
-
-@library_routes.route('/updateInstall', methods=['PUT'])
+@library_routes.route('/updateInstall/<int:game_id>', methods=['PUT'])
 @login_required
 def update_game_install_in_library():
     data = request.get_json()

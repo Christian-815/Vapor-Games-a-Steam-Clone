@@ -13,6 +13,7 @@ const ShoppingCart = () => {
 
     const userCart = useSelector(state => state.cart.userCart);
     const userCartArr = Object.values(userCart);
+    console.log(userCartArr)
     const user = useSelector(state => state.session.user);
 
     const handleRemoveClick = (gameInfo) => {
@@ -71,7 +72,7 @@ const ShoppingCart = () => {
                             <div className="cart-purchase">
                                 <OpenModalButton
                                     buttonText="Purchase for myself"
-                                    modalComponent={<PurchaseGamesModal total={calculateTotal()}/>}
+                                    modalComponent={<PurchaseGamesModal total={calculateTotal()} games={userCartArr}/>}
                                     className="cart-purchase-button"
                                 />
                             </div>
