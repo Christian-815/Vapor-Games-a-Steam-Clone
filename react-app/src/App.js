@@ -8,12 +8,13 @@ import GetOneGame from "./components/Games/singleGame";
 import UserReviews from "./components/Reviews/UserReviews";
 import SingleReview from "./components/Reviews/SingleReview";
 import ShoppingCart from "./components/Cart";
+import UserLibrary from "./components/Library";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import { getUserReviews } from "./store/reviews";
 import { GetUserCart } from "./store/carts";
 import { getAllGames } from "./store/games";
-import Footer from "./components/Footer";
+import { GetUserLibrary } from "./store/library";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function App() {
   if (user) {
     dispatch(getUserReviews(user.id))
     dispatch(GetUserCart())
+    dispatch(GetUserLibrary())
   }
 
   return (
@@ -55,6 +57,9 @@ function App() {
           </Route>
           <Route path='/cart'>
             <ShoppingCart />
+          </Route>
+          <Route path='/library'>
+            <UserLibrary />
           </Route>
         </Switch>
       )}

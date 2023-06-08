@@ -6,7 +6,7 @@ cart_routes = Blueprint('cart', __name__)
 
 
 @cart_routes.route('/')
-@login_required
+# @login_required
 def get_user_cart():
     owner_id = session.get('_user_id')
     user_cart = CartGame.query.filter_by(user_id=owner_id).all()

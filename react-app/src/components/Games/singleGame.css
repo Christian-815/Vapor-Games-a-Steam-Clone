@@ -83,6 +83,26 @@
     background: linear-gradient(to right, #75b022 5%, #588a1b 95%);
 }
 
+.go-to-library-button {
+    cursor: pointer;
+    padding: 0.8em 0.8em;
+    font-size: 14px;
+    border-radius: 3px;
+    border: none;
+    color: #D2E885;
+    background: linear-gradient(to right, #75b022 5%, #588a1b 95%);
+}
+
+.go-to-cart-button {
+    cursor: pointer;
+    padding: 1em 1em;
+    font-size: 12px;
+    border-radius: 3px;
+    border: none;
+    color: #D2E885;
+    background: linear-gradient(to right, #75b022 5%, #588a1b 95%);
+}
+
 .add-to-cart-button:hover {
     background: rgb(161, 204, 7);
     background: linear-gradient(0deg, #8ED629 0%, #6AA621 100%);

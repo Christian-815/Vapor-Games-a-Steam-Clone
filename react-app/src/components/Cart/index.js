@@ -1,33 +1,34 @@
 import { useDispatch, useSelector } from "react-redux"
-import './cart.css'
 import { DeleteGameFromCart } from "../../store/carts";
 import OpenModalButton from "../OpenModalButton";
 import PurchaseGamesModal from "./CompletePurchaseModal";
 import { useHistory, NavLink } from "react-router-dom";
+import './cart.css';
 
 
 
 const ShoppingCart = () => {
     const dispatch = useDispatch();
-    const history = useHistory()
+    const history = useHistory();
 
-    const userCart = useSelector(state => state.cart.userCart)
-    const userCartArr = Object.values(userCart)
-    const user = useSelector(state => state.session.user)
+    const userCart = useSelector(state => state.cart.userCart);
+    const userCartArr = Object.values(userCart);
+    console.log(userCartArr)
+    const user = useSelector(state => state.session.user);
 
     const handleRemoveClick = (gameInfo) => {
         dispatch(DeleteGameFromCart(gameInfo))
-    }
+    };
 
     const calculateTotal = () => {
         let total = 0;
 
         userCartArr.forEach((cartItem) => {
             total += cartItem.game_info.price
-        })
+        });
 
-        return total.toFixed(2)
-    }
+        return total.toFixed(2);
+    };
 
 
     const renderShoppingCart = () => {
@@ -71,7 +72,7 @@ const ShoppingCart = () => {
                             <div className="cart-purchase">
                                 <OpenModalButton
                                     buttonText="Purchase for myself"
-                                    modalComponent={<PurchaseGamesModal total={calculateTotal()}/>}
+                                    modalComponent={<PurchaseGamesModal total={calculateTotal()} games={userCartArr}/>}
                                     className="cart-purchase-button"
                                 />
                             </div>
@@ -99,7 +100,7 @@ const ShoppingCart = () => {
                 </>
             )
         }
-    }
+    };
 
     return (
         <>
@@ -144,6 +145,6 @@ const ShoppingCart = () => {
             }
         </>
     )
-}
+};
 
 export default ShoppingCart

@@ -3,17 +3,20 @@ import { useModal } from '../../context/Modal';
 import { useHistory } from 'react-router-dom';
 import './cart.css'
 import { CheckoutFromCart } from '../../store/carts';
+import { AddToLibrary } from '../../store/library';
 
 
-const PurchaseGamesModal = ({ total }) => {
+const PurchaseGamesModal = ({ total, games }) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const history = useHistory()
+    console.log(games)
 
     // const user = useSelector(state => state.session.user)
 
     const handleSubmit = async () => {
         await dispatch(CheckoutFromCart())
+        await dispatch(AddToLibrary(games))
         closeModal()
         window.alert("Purchase Complete!")
         history.push('/')

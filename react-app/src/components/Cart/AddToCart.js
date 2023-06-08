@@ -9,6 +9,8 @@ const AddToUserCart = () => {
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.cart.userCart)
     const user = useSelector((state) => state.session.user)
+    const userLibrary = useSelector(state => state.library.userLibrary)
+    const userLibraryArr = Object.values(userLibrary)
     const userCartArr = Object.values(cart)
     const history = useHistory()
 
@@ -25,24 +27,6 @@ const AddToUserCart = () => {
             return
         }
 
-        let gameQuantityExceeded = false;
-
-        if (userCartArr.length > 0) {
-            userCartArr.forEach(game => {
-                // console.log("game----------->>>", game.product_id, product_id)
-                if (game.game_id === game_id) {
-                    window.alert("You already have this game in your cart")
-                    gameQuantityExceeded = true;
-                    return
-                }
-
-            })
-        }
-
-        if (gameQuantityExceeded) {
-            return
-        };
-
         const game = {
             user_id: user.id,
             game_id: game_id
@@ -53,9 +37,59 @@ const AddToUserCart = () => {
 
     }
 
+    const renderCartButton = () => {
+        if (user) {
+            if (userLibraryArr.length) {
+                // console.log('userLibrary in here')
+                const inLibrary = userLibraryArr.filter(game => game.game_id === parseInt(game_id))
+
+                if (inLibrary.length) {
+                    return (
+                        <>
+                            <button className='go-to-library-button' onClick={() => history.push('/library')}>Go to Library</button>
+                        </>
+                    )
+                }
+            }
+
+            // console.log('cart in here')
+            if (userCartArr.length) {
+                const inCart = userCartArr.filter(game => game.game_id === parseInt(game_id))
+
+                if (inCart.length) {
+                    return (
+                        <>
+                            <button className='go-to-cart-button' onClick={() => history.push('/cart')}>Go to checkout</button>
+                        </>
+                    )
+                } else {
+                    // console.log('can buy in here')
+                    return (
+                        <>
+                            <button className='add-to-cart-button' onClick={handleSubmit}>Add to Cart</button>
+                        </>
+                    )
+                }
+            } else {
+                // console.log('can buy in here')
+                return (
+                    <>
+                        <button className='add-to-cart-button' onClick={handleSubmit}>Add to Cart</button>
+                    </>
+                )
+            }
+        } else {
+            return (
+                <>
+                    <button className='add-to-cart-button' onClick={handleSubmit}>Add to Cart</button>
+                </>
+            )
+        }
+    }
+
     return (
         <>
-            <button className='add-to-cart-button' onClick={handleSubmit}>Add to Cart</button>
+            {renderCartButton()}
         </>
     )
 }

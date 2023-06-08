@@ -1,12 +1,11 @@
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import React from "react";
 import { useParams } from "react-router-dom";
 import { getAllGames, getOneGame } from "../../store/games";
 import AddToUserCart from "../Cart/AddToCart";
 import GameReviews from "../Reviews";
-import './singleGame.css'
 import { getGameReviews } from "../../store/reviews";
+import './singleGame.css'
 
 const GetOneGame = () => {
     const dispatch = useDispatch();
