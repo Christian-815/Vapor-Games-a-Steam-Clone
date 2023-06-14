@@ -397,7 +397,7 @@
     border-radius: 2px;
     background: linear-gradient(180deg, #262D33 -3.38%, #1D1E20 78.58%);
     padding: 0.3em 0.7em;
-    cursor: not-allowed;
+    cursor: pointer;
 }
 
 .unactive-list:hover {

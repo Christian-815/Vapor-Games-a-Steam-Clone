@@ -73,7 +73,10 @@ function Navigation({ isLoaded }) {
 					}}>
 						Your Reviews
 					</button>
-					<button style={{ cursor: 'not-allowed' }} onClick={(e) => e.stopPropagation()} className='nav-bar-green-options-buttons'>Your Library</button>
+					<button onClick={(e) => {
+						e.stopPropagation()
+						history.push('/library')
+					}} className='nav-bar-green-options-buttons'>Your Library</button>
 					<button style={{ cursor: 'not-allowed' }} onClick={(e) => e.stopPropagation()} className='nav-bar-green-options-buttons'>Categories</button>
 					<button style={{ cursor: 'not-allowed' }} onClick={(e) => e.stopPropagation()} className='nav-bar-green-options-buttons'>News</button>
 				</>
@@ -135,7 +138,7 @@ function Navigation({ isLoaded }) {
 									rel='noopener noreferrer'>
 										GITHUB
 									</a>
-									<div>SUPPORT</div>
+									<div style={{ cursor: 'not-allowed' }}>SUPPORT</div>
 								</div>
 								<div className='homepage-user-interact'>
 									<button className='install-steam-button'>

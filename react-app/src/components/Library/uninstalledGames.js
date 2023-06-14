@@ -5,12 +5,14 @@ import { GetUserLibrary } from '../../store/library';
 import './library.css'
 
 
-const UserLibrary = () => {
+const UserUninstalledGames = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
     const userLibrary = useSelector(state => state.library.userLibrary)
     const userLibraryArr = Object.values(userLibrary)
+    const userGamesUninstalled = userLibraryArr.filter(game => game.installed === false)
+    // console.log(userGamesInstalled)
     const user = useSelector(state => state.session.user)
 
     const handleClick = (game) => {
@@ -53,13 +55,13 @@ const UserLibrary = () => {
             <div className='user-page-container'>
 
                 <div className='show-list'>
-                    <NavLink to='/library' activeClassName='active-list'>
+                    <NavLink to='/library' className='unactive-list'>
                         <div>All Games</div>
                     </NavLink>
                     <NavLink to='/library/installed' className='unactive-list'>
                         <div>Installed</div>
                     </NavLink>
-                    <NavLink to='/library/uninstalled' className='unactive-list'>
+                    <NavLink to='/library/uninstalled' activeClassName='active-list'>
                         <div>Uninstalled</div>
                     </NavLink>
                     <NavLink to='/reviews/user' className='unactive-list'>
@@ -68,11 +70,11 @@ const UserLibrary = () => {
                 </div>
 
                 <div style={{ color: 'white', paddingBottom: '1em', borderTop: '1px solid black', width: '52em', paddingTop: '1em' }}>
-                    Showing ({userLibraryArr.length}) games
+                    Showing ({userGamesUninstalled.length}) not installed games
                 </div>
 
                 <div className='user-library-page-games'>
-                    {userLibraryArr.map((game) => {
+                    {userGamesUninstalled.map((game) => {
                         return (
                             <div key={game.id} className='user-library-page-indiv-game-border'>
                                 <div className='user-library-page-indiv-game'>
@@ -100,4 +102,4 @@ const UserLibrary = () => {
     )
 }
 
-export default UserLibrary
+export default UserUninstalledGames
