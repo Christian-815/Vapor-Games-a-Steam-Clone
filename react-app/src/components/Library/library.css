@@ -66,3 +66,91 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+.library-remove-game {
+    text-decoration: underline;
+    border: none;
+    background: none;
+    color: black;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.library-remove-game:hover {
+    color: rgb(236, 74, 74);
+}
+
+.delete-game-border {
+    height: 240px;
+    width: 500px;
+    background: rgb(2, 202, 255);
+    background: linear-gradient(90deg, rgba(2, 202, 255, 1) 0%, rgba(49, 106, 255, 1) 71%);
+    padding-top: 1px;
+}
+
+.delete-game-container {
+    height: 240px;
+    width: 500px;
+    background: rgb(51, 55, 63);
+    background: linear-gradient(160deg, rgba(51, 55, 63, 1) 0%, rgba(37, 40, 46, 1) 75%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.delete-game-title {
+    font-size: 20px;
+    padding-left: 2em;
+    padding-top: 1em;
+    font-weight: bold;
+    color: white;
+}
+
+.delete-game-text {
+    font-size: 12px;
+    padding-left: 3.5em;
+    padding-top: 1em;
+    font-weight: bold;
+    color: #acb2b8;
+}
+
+.delete-game-submit {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    column-gap: 0.7em;
+    padding-right: 3.5em;
+    padding-top: 1em;
+}
+
+.delete-game-yes {
+    text-align: center;
+    background: #6fa720;
+    background: linear-gradient(to right, #75b022 5%, #588a1b 95%);
+    border-radius: 2px;
+    border: none;
+    padding: 0.4em 1.2em;
+    color: #d2efa9;
+    cursor: pointer;
+}
+
+.delete-game-yes:hover {
+    background: #84C843;
+    color: white;
+}
+
+.delete-game-no {
+    text-align: center;
+    background: linear-gradient(to right, #32363f 5%, #32363f 95%);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    border: none;
+    padding: 0.4em 1.2em;
+    color: white;
+    cursor: pointer;
+}
+
+.delete-game-no:hover {
+    background: #464D58;
+}

@@ -63,14 +63,14 @@ def add_to_library():
 @login_required
 def delete_game_from_library():
     data = request.get_json()
-    game_id = data['id']
+    game_id = data['game_id']
     owner_id = session.get('_user_id')
 
-    # print("DELETE Game FROM library", owner_id)
+    print("DELETE Game FROM library", owner_id, game_id, '-----------------------', data)
 
     game_in_user_library = LibraryGame.query.filter(LibraryGame.game_id == game_id).filter(LibraryGame.user_id == owner_id).first()
 
-    # print("DELETE game FROM library", game_in_user_library)
+    print("DELETE game FROM library", game_in_user_library)
 
     db.session.delete(game_in_user_library)
     db.session.commit()

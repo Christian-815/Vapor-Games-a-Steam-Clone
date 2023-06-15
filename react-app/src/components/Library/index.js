@@ -2,7 +2,9 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, NavLink } from 'react-router-dom';
 import { GetUserLibrary } from '../../store/library';
+import RemoveGamesModal from './RemoveGameModal';
 import './library.css'
+import OpenModalButton from '../OpenModalButton';
 
 
 const UserLibrary = () => {
@@ -82,7 +84,16 @@ const UserLibrary = () => {
                                             <img onClick={() => handleClick(game)} src={game.game_info.main_img} className='indiv-user-game-gameimg'></img>
                                         </div>
                                         <div className='indiv-user-game-right'>
-                                            <div style={{ color: '#acb2b8', fontSize: '17px' }}>{game.game_info.game_name}</div>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                                <div style={{ color: '#acb2b8', fontSize: '17px' }}>{game.game_info.game_name}</div>
+                                                <div>
+                                                    <OpenModalButton
+                                                        buttonText="Delete from library"
+                                                        modalComponent={<RemoveGamesModal game={game} />}
+                                                        className="library-remove-game"
+                                                    />
+                                                </div>
+                                            </div>
                                             <div style={{ color: '#a0a08b', fontSize: '11px', borderBottom: '1px solid black', paddingBottom: '15px', display: 'flex', justifyContent: 'space-between' }}>
                                                 <div>Purchased: {formatDate(game.created_at)}</div>
                                                 <div>{checkInstall(game)}</div>
