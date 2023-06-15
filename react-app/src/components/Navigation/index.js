@@ -36,7 +36,7 @@ function Navigation({ isLoaded }) {
 			return (
 				<>
 					<div>
-						» <NavLink style={{ textDecoration: 'none', cursor: 'pointer', color: 'white'}} to='/reviews/user'>Reviews</NavLink> » {findReviewGameName(parseInt(locationArr[3]))}
+						» <NavLink style={{ textDecoration: 'none', cursor: 'pointer', color: 'white' }} to='/reviews/user'>Reviews</NavLink> » {findReviewGameName(parseInt(locationArr[3]))}
 					</div>
 				</>
 			)
@@ -58,22 +58,25 @@ function Navigation({ isLoaded }) {
 			return (
 				<>
 					<button
-					className='nav-bar-green-options-buttons'
-					onClick={(e) => {
-						e.stopPropagation()
-						history.push('/')
-					}}>
+						className='nav-bar-green-options-buttons'
+						onClick={(e) => {
+							e.stopPropagation()
+							history.push('/')
+						}}>
 						Your Store
 					</button>
 					<button
-					className='nav-bar-green-options-buttons'
-					onClick={(e) => {
-						e.stopPropagation()
-						history.push('/reviews/user')
-					}}>
+						className='nav-bar-green-options-buttons'
+						onClick={(e) => {
+							e.stopPropagation()
+							history.push('/reviews/user')
+						}}>
 						Your Reviews
 					</button>
-					<button style={{ cursor: 'not-allowed' }} onClick={(e) => e.stopPropagation()} className='nav-bar-green-options-buttons'>Your Library</button>
+					<button onClick={(e) => {
+						e.stopPropagation()
+						history.push('/library')
+					}} className='nav-bar-green-options-buttons'>Your Library</button>
 					<button style={{ cursor: 'not-allowed' }} onClick={(e) => e.stopPropagation()} className='nav-bar-green-options-buttons'>Categories</button>
 					<button style={{ cursor: 'not-allowed' }} onClick={(e) => e.stopPropagation()} className='nav-bar-green-options-buttons'>News</button>
 				</>
@@ -82,11 +85,11 @@ function Navigation({ isLoaded }) {
 			return (
 				<>
 					<button
-					className='nav-bar-green-options-buttons'
-					onClick={(e) => {
-						e.stopPropagation()
-						history.push('/')
-					}}>
+						className='nav-bar-green-options-buttons'
+						onClick={(e) => {
+							e.stopPropagation()
+							history.push('/')
+						}}>
 						Store
 					</button>
 					<button style={{ cursor: 'not-allowed' }} onClick={(e) => e.stopPropagation()} className='nav-bar-green-options-buttons'>New & Noteworthy</button>
@@ -122,20 +125,22 @@ function Navigation({ isLoaded }) {
 								<div className='homepage-user-navoptions'>
 									<div onClick={() => history.push('/')} style={{ cursor: "pointer" }}>STORE</div>
 									<a
-									href="https://www.linkedin.com/in/christian-oviedo-6a1586242/"
-									style={{ textDecoration: 'none', color: '#b8b6b4'}}
-									target='_blank'
-									rel='noopener noreferrer'>
+										href="https://www.linkedin.com/in/christian-oviedo-6a1586242/"
+										style={{ textDecoration: 'none', color: '#b8b6b4', display: 'flex', alignItems: 'center', columnGap: '0.2em' }}
+										target='_blank'
+										rel='noopener noreferrer'>
 										LINKEDIN
+										<i class="fa-brands fa-linkedin"></i>
 									</a>
 									<a
-									href="https://github.com/Christian-815"
-									style={{ textDecoration: 'none', color: '#b8b6b4'}}
-									target='_blank'
-									rel='noopener noreferrer'>
+										href="https://github.com/Christian-815"
+										style={{ textDecoration: 'none', color: '#b8b6b4', display: 'flex', alignItems: 'center', columnGap: '0.2em' }}
+										target='_blank'
+										rel='noopener noreferrer'>
 										GITHUB
+										<i class="fa-brands fa-github"></i>
 									</a>
-									<div>SUPPORT</div>
+									<div style={{ cursor: 'not-allowed' }}>SUPPORT</div>
 								</div>
 								<div className='homepage-user-interact'>
 									<button className='install-steam-button'>
@@ -200,18 +205,20 @@ function Navigation({ isLoaded }) {
 								<div className='homepage-user-navoptions'>
 									<div onClick={() => history.push('/')} style={{ cursor: "pointer" }}>STORE</div>
 									<a
-									href="https://www.linkedin.com/in/christian-oviedo-6a1586242/"
-									style={{ textDecoration: 'none', color: '#b8b6b4' }}
-									target='_blank'
-									rel='noopener noreferrer'>
+										href="https://www.linkedin.com/in/christian-oviedo-6a1586242/"
+										style={{ textDecoration: 'none', color: '#b8b6b4', display: 'flex', alignItems: 'center', columnGap: '0.2em' }}
+										target='_blank'
+										rel='noopener noreferrer'>
 										LINKEDIN
+										<i class="fa-brands fa-linkedin"></i>
 									</a>
 									<a
-									href="https://github.com/Christian-815"
-									style={{ textDecoration: 'none', color: '#b8b6b4' }}
-									target='_blank'
-									rel='noopener noreferrer'>
+										href="https://github.com/Christian-815"
+										style={{ textDecoration: 'none', color: '#b8b6b4', display: 'flex', alignItems: 'center', columnGap: '0.2em' }}
+										target='_blank'
+										rel='noopener noreferrer'>
 										GITHUB
+										<i class="fa-brands fa-github"></i>
 									</a>
 									<div style={{ cursor: 'not-allowed' }}>SUPPORT</div>
 								</div>
@@ -274,17 +281,19 @@ function Navigation({ isLoaded }) {
 									<div onClick={() => history.push('/')} style={{ cursor: "pointer" }}>STORE</div>
 									<a
 										href="https://www.linkedin.com/in/christian-oviedo-6a1586242/"
-										style={{ textDecoration: 'none', color: '#b8b6b4' }}
+										style={{ textDecoration: 'none', color: '#b8b6b4', display: 'flex', alignItems: 'center', columnGap: '0.2em' }}
 										target='_blank'
 										rel='noopener noreferrer'>
 										LINKEDIN
+										<i class="fa-brands fa-linkedin"></i>
 									</a>
 									<a
 										href="https://github.com/Christian-815"
-										style={{ textDecoration: 'none', color: '#b8b6b4' }}
+										style={{ textDecoration: 'none', color: '#b8b6b4', display: 'flex', alignItems: 'center', columnGap: '0.2em' }}
 										target='_blank'
 										rel='noopener noreferrer'>
 										GITHUB
+										<i class="fa-brands fa-github"></i>
 									</a>
 									<div style={{ cursor: 'not-allowed' }}>SUPPORT</div>
 								</div>

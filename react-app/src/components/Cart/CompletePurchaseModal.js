@@ -18,8 +18,7 @@ const PurchaseGamesModal = ({ total, games }) => {
         await dispatch(CheckoutFromCart())
         await dispatch(AddToLibrary(games))
         closeModal()
-        window.alert("Purchase Complete!")
-        history.push('/')
+        history.push('/library/uninstalled')
     };
 
     return (

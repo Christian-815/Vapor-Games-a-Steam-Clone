@@ -9,6 +9,8 @@ import UserReviews from "./components/Reviews/UserReviews";
 import SingleReview from "./components/Reviews/SingleReview";
 import ShoppingCart from "./components/Cart";
 import UserLibrary from "./components/Library";
+import UserInstalledGames from "./components/Library/installedGames";
+import UserUninstalledGames from "./components/Library/uninstalledGames";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import { getUserReviews } from "./store/reviews";
@@ -58,7 +60,13 @@ function App() {
           <Route path='/cart'>
             <ShoppingCart />
           </Route>
-          <Route path='/library'>
+          <Route path='/library/uninstalled'>
+            <UserUninstalledGames />
+          </Route>
+          <Route path='/library/installed'>
+            <UserInstalledGames />
+          </Route>
+          <Route path='/library' exact>
             <UserLibrary />
           </Route>
         </Switch>
