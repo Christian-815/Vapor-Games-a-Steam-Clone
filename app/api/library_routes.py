@@ -66,11 +66,11 @@ def delete_game_from_library():
     game_id = data['game_id']
     owner_id = session.get('_user_id')
 
-    print("DELETE Game FROM library", owner_id, game_id, '-----------------------', data)
+    # print("DELETE Game FROM library", owner_id, game_id, '-----------------------', data)
 
     game_in_user_library = LibraryGame.query.filter(LibraryGame.game_id == game_id).filter(LibraryGame.user_id == owner_id).first()
 
-    print("DELETE game FROM library", game_in_user_library)
+    # print("DELETE game FROM library", game_in_user_library)
 
     db.session.delete(game_in_user_library)
     db.session.commit()
@@ -81,16 +81,23 @@ def delete_game_from_library():
 
 @library_routes.route('/updateInstall/<int:game_id>', methods=['PUT'])
 @login_required
-def update_game_install_in_library():
+def update_game_install_in_library(game_id):
     data = request.get_json()
-    game_id = data['id']
     owner_id = session.get('_user_id')
+
 
     game_in_user_library = LibraryGame.query.filter(LibraryGame.game_id == game_id).filter(LibraryGame.user_id == owner_id).first()
 
-    if game_in_user_library:
-        game_in_user_library['installed'] = data['installed']
+    print("DELETE Game FROM library", game_in_user_library.installed)
+    if game_in_user_library.installed == True:
+        game_in_user_library.installed = False
 
         db.session.commit()
         return game_in_user_library.to_dict()
-    return {'MESSAGE': "Game not found."}
+    elif game_in_user_library.installed == False:
+        game_in_user_library.installed = True
+
+        db.session.commit()
+        return game_in_user_library.to_dict()
+    else:
+        return {'MESSAGE': "Game not found."}

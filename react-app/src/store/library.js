@@ -69,11 +69,11 @@ export const DeleteGameFromLibrary = (game) => async (dispatch) => {
     }
 }
 
-export const updateGameInstall = (game_id, newStatus) => async (dispatch) => {
-    const response = await fetch(`/api/library/updateInstall/${game_id}`, {
+export const updateGameInstall = (game) => async (dispatch) => {
+    const response = await fetch(`/api/library/updateInstall/${game.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newStatus)
+        body: JSON.stringify(game)
     });
 
     if (response.ok) {

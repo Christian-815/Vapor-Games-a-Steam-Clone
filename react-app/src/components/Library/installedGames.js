@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, NavLink } from 'react-router-dom';
-import { GetUserLibrary } from '../../store/library';
+import { GetUserLibrary, updateGameInstall } from '../../store/library';
 import './library.css'
 
 
@@ -32,20 +32,8 @@ const UserInstalledGames = () => {
         return dateObj.toLocaleDateString("en-US", options);
     }
 
-    const checkInstall = (game) => {
-        if (game.installed) {
-            return (
-                <>
-                    <div onClick={() => history.push('/library/installed')} className='installed-button'>INSTALLED</div>
-                </>
-            )
-        } else {
-            return (
-                <>
-                    <div onClick={() => history.push('/library/uninstalled')} className='installed-button'>NOT INSTALLED</div>
-                </>
-            )
-        }
+    const handleUninstall = (game) => {
+        dispatch(updateGameInstall(game))
     }
 
     if (!user) return null;
@@ -87,7 +75,9 @@ const UserInstalledGames = () => {
                                             <div style={{ color: '#acb2b8', fontSize: '17px' }}>{game.game_info.game_name}</div>
                                             <div style={{ color: '#a0a08b', fontSize: '11px', borderBottom: '1px solid black', paddingBottom: '15px', display: 'flex', justifyContent: 'space-between' }}>
                                                 <div>Purchased: {formatDate(game.created_at)}</div>
-                                                <div>{checkInstall(game)}</div>
+                                                <div onClick={() => handleUninstall(game.game_info)} className='download-uninstall-button'>
+                                                    <i class="fa-solid fa-xmark"></i> UNINSTALL
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -154,3 +154,18 @@
 .delete-game-no:hover {
     background: #464D58;
 }
+
+.download-uninstall-button {
+    border: 1px solid #1A9FFF;
+    padding: 0.5em;
+    background-color: #1A9FFF;
+    color: white;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.download-uninstall-button:hover {
+    background-color: #00bbff;
+}
