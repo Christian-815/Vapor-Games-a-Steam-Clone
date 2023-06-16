@@ -11,6 +11,7 @@ import ShoppingCart from "./components/Cart";
 import UserLibrary from "./components/Library";
 import UserInstalledGames from "./components/Library/installedGames";
 import UserUninstalledGames from "./components/Library/uninstalledGames";
+import SearchResults from "./components/SearchBar/searchResults";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import { getUserReviews } from "./store/reviews";
@@ -68,6 +69,9 @@ function App() {
           </Route>
           <Route path='/library' exact>
             <UserLibrary />
+          </Route>
+          <Route path='/search/:search_terms'>
+            <SearchResults />
           </Route>
         </Switch>
       )}

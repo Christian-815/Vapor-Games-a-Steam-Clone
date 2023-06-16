@@ -1,5 +1,6 @@
 const GET_ALL_GAMES = 'games/GET_ALL_GAMES'
 const GET_ONE_GAME = 'games/GET_ONE_GAME'
+const GET_SEARCH = 'games/GET_SEARCH'
 
 
 // ACTIONS
@@ -12,6 +13,11 @@ export const actionGetAllGames = (games) => ({
 export const actionGetOneGame = (game) => ({
     type: GET_ONE_GAME,
     game
+})
+
+export const actionGetSearchedGames = (games) => ({
+    type: GET_SEARCH,
+    games
 })
 
 
@@ -46,13 +52,25 @@ export const getOneGame = (gameId) => async (dispatch) => {
     }
 }
 
+export const getSearchResultGames = (search_terms) => async (dispatch) => {
+
+    const response = await fetch(`/api/search/${search_terms}`);
+
+    if (response.ok) {
+        const searchResultGames = await response.json();
+        const normalizedGames = normalizingAllGames(searchResultGames);
+        dispatch(actionGetSearchedGames(normalizedGames));
+        return normalizedGames;
+    }
+}
+
 
 
 
 
 // REDUCER
 
-const initialState = { allGames: {}, singleGame: {}, userGames: {} }
+const initialState = { allGames: {}, singleGame: {}, userGames: {}, searchedGames: {} }
 
 const gamesReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -65,6 +83,12 @@ const gamesReducer = (state = initialState, action) => {
         case GET_ONE_GAME: {
             const newState = {...state};
             newState.singleGame = action.game
+            return newState
+        }
+
+        case GET_SEARCH: {
+            const newState = {...state};
+            newState.searchedGames = action.games;
             return newState
         }
 
