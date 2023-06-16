@@ -23,8 +23,7 @@ const AddToUserCart = () => {
         e.preventDefault()
 
         if (!user) {
-            window.alert("Please Log in or Sign Up to purchase!")
-            return
+            return history.push('/login')
         }
 
         const game = {

@@ -18,6 +18,8 @@ const GameReviews = () => {
     const singleGame = useSelector(state => state.games.allGames[game_id])
     const newReview = useSelector(state => state.reviews.newReview)
     const user = useSelector(state => state.session.user)
+    const userLibrary = useSelector(state => state.library.userLibrary)
+    const userLibraryArr = Object.values(userLibrary)
     // console.log(gameReviews)
 
     useEffect(async () => {
@@ -87,6 +89,11 @@ const GameReviews = () => {
         return userReview
     }
 
+    const checkGameInLibrary = () => {
+        const userOwnsGame = userLibraryArr.find(game => game.game_id === parseInt(game_id))
+        return userOwnsGame
+    }
+
     function formatDate(created_at) {
         const dateObj = new Date(created_at);
         const options = { month: "long", day: "numeric", year: "numeric" };
@@ -94,7 +101,7 @@ const GameReviews = () => {
     }
 
     const renderReviewBlock = () => {
-        if (user && !checkReviewsList()) {
+        if (user && checkGameInLibrary() && !checkReviewsList()) {
             return (
                 <>
                     <div className="leave-review-div">

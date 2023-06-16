@@ -47,7 +47,27 @@ function Navigation({ isLoaded }) {
 			return (
 				<>
 					<div>
-						» Games » Reviews
+						» <NavLink style={{ textDecoration: 'none', cursor: 'pointer', color: 'white' }} to='/library'>Games</NavLink> » Reviews
+					</div>
+				</>
+			)
+		}
+
+		if (locationArr[2] === 'uninstalled') {
+			return (
+				<>
+					<div>
+						» <NavLink style={{ textDecoration: 'none', cursor: 'pointer', color: 'white' }} to='/library'>Games</NavLink> » Uninstalled
+					</div>
+				</>
+			)
+		}
+
+		if (locationArr[2] === 'installed') {
+			return (
+				<>
+					<div>
+						» <NavLink style={{ textDecoration: 'none', cursor: 'pointer', color: 'white' }} to='/library'>Games</NavLink> » Installed
 					</div>
 				</>
 			)
@@ -191,7 +211,7 @@ function Navigation({ isLoaded }) {
 					</div>
 				</>
 			)
-		} else if (locationArr[1] === 'cart' || locationArr[1] === 'games') {
+		} else if (locationArr[1] === 'cart' || locationArr[1] === 'games' || locationArr[1] === 'search') {
 			return (
 				<>
 					<div className='nav-bar-green'>

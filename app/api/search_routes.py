@@ -8,17 +8,17 @@ search_routes = Blueprint('search', __name__)
 @search_routes.route('/<string:search_terms>')
 def search(search_terms):
 
-    print('INTIAL SEARCH TERMS', search_terms)
+    # print('INTIAL SEARCH TERMS', search_terms)
 
     search_terms = search_terms.split()
 
-    print("fsdfsdfsdfsfsfs", search_terms)
+    # print("fsdfsdfsdfsfsfs", search_terms)
 
     search_matched_games = []
 
     for term in search_terms:
 
-        print('GJGJHGJHGJHGKHJGKJ', term)
+        # print('GJGJHGJHGJHGKHJGKJ', term)
 
         # the or_() method from SQLAlchemy to combine two filter conditions using the OR operator
         # This query creates two filter conditions using the ilike() method to perform a case-INSENSITIVE search for search_terms in the name and description fields of the game table. These conditions are then combined using the or_() method, which results in a query that matches records where either condition is true. Finally, the all() method is called to execute the query and return all matching records.
