@@ -3,6 +3,7 @@ import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import SearchBar from '../SearchBar';
 
 function Navigation({ isLoaded }) {
 	const location = useLocation();
@@ -181,8 +182,8 @@ function Navigation({ isLoaded }) {
 									<div className='nav-bar-green-options'>
 										{blueNavBarOptions()}
 									</div>
-									<div>
-										<div style={{ color: '#10226F' }}>Search Bar</div>
+									<div onClick={(e) => e.stopPropagation()}>
+										<SearchBar />
 									</div>
 								</div>
 							</div>
@@ -257,8 +258,8 @@ function Navigation({ isLoaded }) {
 								<div className='nav-bar-green-options'>
 									{blueNavBarOptions()}
 								</div>
-								<div>
-									<div style={{ color: '#10226F' }}>Search Bar</div>
+								<div onClick={(e) => e.stopPropagation()}>
+									<SearchBar />
 								</div>
 							</div>
 						</div>
