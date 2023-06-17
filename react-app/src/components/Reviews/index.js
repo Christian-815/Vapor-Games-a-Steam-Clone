@@ -122,9 +122,9 @@ const GameReviews = () => {
                                     value={review}
                                     onChange={(e) => setReview(e.target.value)}
                                 />
-                                {errors.review ? <p className='new-review-errors'>{errors.review}</p> : null}
+                                {errors.review ? <p style={{ color: 'red' }}>{errors.review}</p> : null}
                                 <div className="leave-review-user-interact-buttons">
-                                    {errors.recommended ? <p className='new-recommended-errors'>{errors.recommended}</p> : null}
+                                    {errors.recommended ? <p style={{ color: 'red' }}>{errors.recommended}</p> : null}
                                     {hanleRecommendedButtons()}
                                     <div>
                                         <button onClick={handleReviewPost} className="post-review-button">Post review</button>
