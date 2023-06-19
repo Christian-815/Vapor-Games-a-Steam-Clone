@@ -104,6 +104,7 @@ function SignupFormModal() {
 							style={{ padding: '6px 8px', width: '25em', backgroundColor: '#32353C', border: 'none', borderRadius: '2px', color: 'white' }}
 						/>
 						<button className="signup-page-button" type="submit">Sign Up</button>
+						<div onClick={() => history.push('/login')} className="login-button" style={{ cursor: 'pointer' }}>Already a member?</div>
 					</form>
 				</div>
 			</div>

@@ -16,7 +16,7 @@ const UserUninstalledGames = () => {
     const user = useSelector(state => state.session.user)
 
     const handleClick = (game) => {
-        history.push(`/games/${game.id}`)
+        history.push(`/games/${game.game_id}`)
     }
 
     useEffect(() => {
