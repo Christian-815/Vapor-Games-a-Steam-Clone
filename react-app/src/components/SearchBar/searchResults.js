@@ -29,8 +29,8 @@ const SearchResults = () => {
 
     return (
         <>
-            <h1 className="search-results-header">Search Results for "{`${search_terms}`}"</h1>
-            <div className='all-products-container'>
+            <div className="search-results-container">
+                <h1 className="search-results-header">Search for "{`${search_terms}`}"</h1>
 
 
                 {searchResultGames.length === 0 &&
@@ -38,19 +38,20 @@ const SearchResults = () => {
                         <h2 className="no-search-results">Sorry, your search came up empty!</h2>
                     </div>
                 }
+
                 {searchResultGames.map(game => {
                     return (
-                        <div key={game.id} className='all-games-card'>
-                            <NavLink to={`/games/${game.id}`} className='all-games-image-container'>
-                                <img
-                                    src={game.main_img}
-                                    alt={`${game.game_name}'s image unavaiable`}
-                                    className='all-games-image'
-                                >
-                                </img>
-                                <div class="all-games-price-container">
-                                    <div className='all-games-price'>
-                                        ${`${game.price.toFixed(2)}`}
+                        <div key={game.id}>
+                            <NavLink to={`/games/${game.id}`} style={{ textDecoration: 'none', color: 'white' }}>
+                                <div className="search-game-block">
+                                    <div>
+                                        <img style={{ width: '10em', height: '100%' }} src={game.main_img} />
+                                    </div>
+                                    <div style={{ flex: '2', paddingTop: '0.5em' }}>
+                                        {game.game_name}
+                                    </div>
+                                    <div style={{ display: 'flex', alignItems: 'center', paddingRight: '2em' }}>
+                                        ${game.price}
                                     </div>
                                 </div>
                             </NavLink>
